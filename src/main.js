@@ -1,8 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Router from './router/index'
+import store from './vuex/store' // 引入store
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
+  router:Router,
+  store,
   render: h => h(App),
-}).$mount('#app')
+  mounted () {
+    document.dispatchEvent(new Event('render-event'))
+  }
+}).$mount('#app');
