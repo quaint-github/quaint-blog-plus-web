@@ -31,98 +31,25 @@
         </div>
         <article>
             <div class="blogs">
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text02.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">陌上花开，可缓缓归矣</a></h3>
+
+                <li v-for="item in homeArticle" :key="item.id">
+                    <span class="blogpic"><a href="/"><img :src="item.mainImageUrl"></a></span>
+                    <h3 class="blogtitle"><a href="/">{{item.articleTitle}}</a></h3>
                     <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
+                        <p>{{item.articleAbstract}}</p>
                     </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
+                    <div class="autor">
+                        <span class="lm">
+                            <a href="/" target="_blank" class="classname">{{item.label}}</a>
+                        </span>
+                        <span class="dtime">{{item.createTime}}</span>
+                        <span class="viewnum">浏览（<a href="/">{{item.readNum}}</a>）</span>
+                        <span class="readmore"><a href="/">阅读原文</a></span>
                     </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
                 </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/zd03.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/zd01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/zd02.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/zd01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
-                <li> <span class="blogpic"><a href="/"><img src="../assets/blog/images/text01.jpg"></a></span>
-                    <h3 class="blogtitle"><a href="/">网页中图片属性固定宽度，如何用js改变大小</a></h3>
-                    <div class="bloginfo">
-                        <p>用最简单的代码，实现瀑布流布局，没有繁琐的css，没有jq，只需要做到以下就可以实现瀑布流的效果。思路很简单，看成是三列布局，分别用三个ul来调用。帝国cms列表模板，...</p>
-                    </div>
-                    <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span><span class="dtime">2018-05-04</span><span class="viewnum">浏览（<a href="/">0</a>）</span><span class="readmore"><a href="/">阅读原文</a></span></div>
-                </li>
+
             </div>
+
             <div class="sidebar">
                 <div class="about">
                     <div class="avatar"> <img src="../assets/blog/images/avatar.jpg" alt=""> </div>
@@ -213,6 +140,7 @@
 </template>
 
 <script>
+    import {getHomeArticle} from '../api/api'
     export default {
         name: "Home",
         metaInfo: {
@@ -228,6 +156,42 @@
                 }
             ]
         },
+        data(){
+            return{
+                homeArticle:[{
+                    "id": 1,
+                    "articleTitle": "作为一个设计师,如果遭到质疑你是否能恪守自己的原则?",
+                    "articleAbstract": "曾经有站长找我求助，他说他不知道该怎么办，自己做出来的网站，不仅没有得",
+                    "mainImageUrl": "http://www.yangqq.com/d/file/news/life/2018-06-29/75842f4d1e18d692a66c38eb172a40ab.jpg",
+                    "memberId": 1,
+                    "label": "1,2,3",
+                    "readNum": 0,
+                    "articleContent": "测试内容",
+                    "updateTime": "2019-12-03T16:12:08",
+                    "createTime": "2019-12-03T14:36:12",
+                    "valid": true
+                }]
+            }
+        },
+        created:function(){
+            this._getHomeArticle()
+        },
+        methods: {
+            // 获取首页展示的文章列表
+            _getHomeArticle() {
+                let vueThis = this;
+                getHomeArticle({})
+                    .then(function (response) {
+                        // window.console.log(response);
+                        if(response.data!=="" && response.data.length>0){
+                            vueThis.homeArticle = response.data;
+                        }
+                    })
+                    .catch(function (error) {
+                        window.console.log(error);
+                    });
+            },
+        }
     }
 </script>
 

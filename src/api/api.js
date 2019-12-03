@@ -9,13 +9,14 @@ const axiosInstance = axios.create({
 });
 
 // 校验用户登陆 用于测试
-export const checkLogin = (params) => {
+export const getHomeArticle = (params) => {
     return axiosInstance({
-        url: webPrefix + "/member/check/login",
-        method: "post",
+        url: webPrefix + "/article/home",
+        method: "get",
         data: params
     })
 };
+
 
 // export default {
 //     checkLogin: "http://localhost:8080/member/check/login",
