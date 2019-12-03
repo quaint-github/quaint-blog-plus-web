@@ -195,7 +195,20 @@
 
 <script>
     export default {
-        name: "List"
+        name: "List",
+        metaInfo: {
+            title: 'ListPage',
+            meta: [
+                {
+                    name: 'keywords',
+                    content: '关键字1,关键字2,关键字3'
+                },
+                {
+                    name: 'description',
+                    content: '这是一段网页的描述'
+                }
+            ]
+        },
     }
 </script>
 
