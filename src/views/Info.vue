@@ -23,8 +23,14 @@
                 </div>
                 <div class="share"> </div>
                 <div class="nextinfo">
-                    <p>上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></p>
-                    <p>下一篇：<a href="/news/life/">返回列表</a></p>
+                    <p>上一篇：
+                        <a class="a-hover" v-if="articleInfo.up" @click="_getArticleInfoById(articleInfo.up.id)">{{articleInfo.up.articleTitle}}</a>
+                        <a class="a-hover-no-style" v-else>没有了</a>
+                    </p>
+                    <p>下一篇：
+                        <a class="a-hover" v-if="articleInfo.down" @click="_getArticleInfoById(articleInfo.down.id)">{{articleInfo.down.articleTitle}}</a>
+                        <a class="a-hover-no-style" v-else>没有了</a>
+                    </p>
                 </div>
                 <div class="otherlink">
                     <h2>相关文章</h2>
@@ -92,6 +98,19 @@
                     .catch(function (error) {
                         window.console.log(error);
                     });
+            },
+            _getArticleInfoById(id){
+                let vueThis = this;
+                getArticleInfo({id:id})
+                    .then(function (response) {
+                        window.console.log(JSON.stringify(response.data));
+                        if(response.data!==""){
+                            vueThis.articleInfo = response.data;
+                        }
+                    })
+                    .catch(function (error) {
+                        window.console.log(error);
+                    });
             }
         },
         components: {
@@ -101,5 +120,14 @@
 </script>
 
 <style scoped>
+
+    .a-hover:hover{
+        cursor: pointer;
+        color: #3e8ff7;
+    }
+    .a-hover-no-style:hover{
+        text-decoration: none;
+        color: #555;
+    }
 
 </style>

@@ -7,7 +7,59 @@
     <link rel="icon" href="<%= BASE_URL %>quaint-logo.ico">
     <title>quaint-blog-plus-web</title>
   </head>
-  <body>
+  <script>
+    //  鼠标点击事件
+    a_idx = 0;
+    function effect (e) {
+        let a = new Array(
+                "❤生命的真谛深邃而迷人--Quaint❤",
+                "❤愿大家能够吃饱穿暖--赵云❤",
+                "❤我已经无心敲代码了--张震❤",
+                "❤我的心已经飞向了外面的世界--张震❤",
+                "❤我见众生皆草木,唯你是青山--周娜❤",
+                "❤愿你出来半生，归来仍是少年--李航❤",
+                "❤带着我的意志活下去--李航❤",
+                "❤没尝试过就很向往--郭鹏鹏❤",
+                "❤抹除了你这一年的记忆，希望这次你能好好珍惜--郭鹏鹏❤",
+                "❤愿你有前进一寸的勇气，亦有后退一尺的从容--郭鹏鹏❤",
+                "❤摔倒就停下来了--李吉亮❤"
+        );
+        let text = document.createElement("span");
+        text.innerText = a[a_idx];
+        a_idx = (a_idx + 1) % a.length;
+        // 获取滚动条的高度
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        // let x = e.screenX, y = e.screenY;
+        let x = e.clientX, y = scrollTop+e.clientY;
+        // 定义默认高度
+        y-=10;
+        text.style.color = "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")";
+        text.style.top = y+"px";
+        text.style.left = x+"px";
+        text.style.position = "absolute";
+        text.style.weight = "bold";
+        text.style.zIndex = "9999999";
+
+        let body = document.getElementById("body");
+        body.appendChild(text);
+
+        let count = 100;
+        let timer = setInterval(function () {
+          //盒子自身的位置+步长
+          text.style.top = y - 1 + "px";
+          text.style.opacity = count/100;
+          y-=1;
+          count--;
+          //如果停止文字？清除定时器
+          if(count < 0 || y < 2){
+            body.removeChild(text);
+            clearInterval(timer);
+          }
+        },10);
+      }
+
+  </script>
+  <body id = "body" onclick="effect(event)">
     <noscript>
       <strong>We're sorry but quaint-blog-plus-web doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
