@@ -2,7 +2,7 @@
     <div>
         <header>
             <div class="tophead">
-                <div class="logo"><a href="/">杨青个人博客</a></div>
+                <div class="logo"><a href="/">Quaint个人博客</a></div>
                 <!--<div id="mnav">-->
                     <!--<h2><span class="navicon"></span></h2>-->
                     <!--<ul>-->
@@ -20,7 +20,6 @@
                         <li><router-link to="/about">关于我-quaint</router-link></li>
                         <li><router-link to="/share">模板分享</router-link></li>
                         <li><router-link to="/list">学无止境</router-link></li>
-                        <li><router-link to="/info">慢生活</router-link></li>
                         <li><router-link to="/saying">留言</router-link></li>
                     </ul>
                 </nav>

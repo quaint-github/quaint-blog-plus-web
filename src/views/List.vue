@@ -1,7 +1,10 @@
 <template>
     <div>
         <article>
-            <h1 class="t_nav"><span>不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。 </span><a href="/" class="n1">网站首页</a><a href="/" class="n2">学无止境</a></h1>
+            <h1 class="t_nav"><span>不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。 </span>
+                <router-link to="/" class="n1">网站首页</router-link>
+                <router-link to="/list" class="n2">学无止境</router-link>
+            </h1>
             <div class="blogs">
                 <div class="mt20"></div>
 
@@ -13,11 +16,15 @@
                     </div>
                     <div class="autor">
                         <span class="lm">
-                            <a href="/" target="_blank" class="classname">{{item.label}}</a>
+                            <a v-for="label in item.labels" :key="label" href="/" target="_blank" class="classname">
+                                {{label}}
+                            </a>
                         </span>
-                        <span class="dtime">{{item.createTime}}</span>
+                        <span class="dtime">{{item.updateTime}}</span>
                         <span class="viewnum">浏览（<a href="/">{{item.readNum}}</a>）</span>
-                        <span class="readmore"><a href="/">阅读原文</a></span>
+                        <span class="readmore">
+                            <router-link :to="{path:'/info',query:{id:item.id}}">阅读原文</router-link>
+                        </span>
                     </div>
                 </li>
 
@@ -30,7 +37,7 @@
 
 <script>
     import RightNav from '../components/RightNav';
-    import {getHomeArticle} from '../api/api'
+    import {getArticleList} from '../api/api'
     export default {
         name: "List",
         metaInfo: {
@@ -51,19 +58,7 @@
         },
         data(){
             return{
-                homeArticle:[{
-                    "id": 1,
-                    "articleTitle": "作为一个设计师,如果遭到质疑你是否能恪守自己的原则?",
-                    "articleAbstract": "曾经有站长找我求助，他说他不知道该怎么办，自己做出来的网站，不仅没有得",
-                    "mainImageUrl": "http://www.yangqq.com/d/file/news/life/2018-06-29/75842f4d1e18d692a66c38eb172a40ab.jpg",
-                    "memberId": 1,
-                    "label": "1,2,3",
-                    "readNum": 0,
-                    "articleContent": "测试内容",
-                    "updateTime": "2019-12-03T16:12:08",
-                    "createTime": "2019-12-03T14:36:12",
-                    "valid": true
-                }]
+                homeArticle:[{}]
             }
         },
         created:function(){
@@ -73,7 +68,7 @@
             // 获取首页展示的文章列表
             _getArticleList() {
                 let vueThis = this;
-                getHomeArticle({})
+                getArticleList({})
                     .then(function (response) {
                         // window.console.log(response);
                         if(response.data!=="" && response.data.length>0){

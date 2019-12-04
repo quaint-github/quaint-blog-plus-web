@@ -8,11 +8,28 @@ const axiosInstance = axios.create({
     withCredentials: true // 指定某个请求应该发送凭据。允许客户端携带跨域cookie，也需要此配置
 });
 
-// 校验用户登陆 用于测试
+// 获取首页展示文章
 export const getHomeArticle = (params) => {
     return axiosInstance({
-        url: webPrefix + "/article/home",
+        url: webPrefix + "/home/article/list",
         method: "get",
+        data: params
+    })
+};
+// 获取文章列表展示
+export const getArticleList = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/article/list",
+        method: "post",
+        data: params
+    })
+};
+
+// 获取文章详情展示
+export const getArticleInfo = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/article/id",
+        method: "post",
         data: params
     })
 };

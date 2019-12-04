@@ -40,11 +40,15 @@
                     </div>
                     <div class="autor">
                         <span class="lm">
-                            <a href="/" target="_blank" class="classname">{{item.label}}</a>
+                            <a v-for="label in item.labels" :key="label" href="/" target="_blank" class="classname">
+                                {{label}}
+                            </a>
                         </span>
-                        <span class="dtime">{{item.createTime}}</span>
+                        <span class="dtime">{{item.updateTime}}</span>
                         <span class="viewnum">浏览（<a href="/">{{item.readNum}}</a>）</span>
-                        <span class="readmore"><a href="/">阅读原文</a></span>
+                        <span class="readmore">
+                            <router-link :to="{path:'/info',query:{id:item.id}}">阅读原文</router-link>
+                        </span>
                     </div>
                 </li>
 
@@ -158,19 +162,7 @@
         },
         data(){
             return{
-                homeArticle:[{
-                    "id": 1,
-                    "articleTitle": "作为一个设计师,如果遭到质疑你是否能恪守自己的原则?",
-                    "articleAbstract": "曾经有站长找我求助，他说他不知道该怎么办，自己做出来的网站，不仅没有得",
-                    "mainImageUrl": "http://www.yangqq.com/d/file/news/life/2018-06-29/75842f4d1e18d692a66c38eb172a40ab.jpg",
-                    "memberId": 1,
-                    "label": "1,2,3",
-                    "readNum": 0,
-                    "articleContent": "测试内容",
-                    "updateTime": "2019-12-03T16:12:08",
-                    "createTime": "2019-12-03T14:36:12",
-                    "valid": true
-                }]
+                homeArticle:[{}]
             }
         },
         created:function(){
@@ -182,7 +174,7 @@
                 let vueThis = this;
                 getHomeArticle({})
                     .then(function (response) {
-                        // window.console.log(response);
+                        window.console.log(response.data);
                         if(response.data!=="" && response.data.length>0){
                             vueThis.homeArticle = response.data;
                         }
