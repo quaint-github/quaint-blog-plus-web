@@ -24,6 +24,14 @@ export const getArticleList = (params) => {
         data: params
     })
 };
+// 获取搜索的文章列表
+export const getSearchArticle = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/article/search",
+        method: "post",
+        data: params
+    })
+};
 
 // 获取文章详情展示
 export const getArticleInfo = (params) => {

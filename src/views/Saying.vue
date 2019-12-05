@@ -69,7 +69,7 @@
             </div>
 
             <div class="rightbox">
-                <right-search></right-search>
+                <!--<right-search></right-search>-->
                 <right-column-nav></right-column-nav>
                 <right-label-cloud></right-label-cloud>
                 <right-click-rank></right-click-rank>
@@ -80,14 +80,14 @@
 </template>
 
 <script>
-    import RightSearch from '../components/RightSearch';
+    // import RightSearch from '../components/RightSearch';
     import RightColumnNav from '../components/RightColumnNav';
     import RightLabelCloud from '../components/RightLabelCloud';
     import RightClickRank from '../components/RightClickRank';
     export default {
         name: "Saying",
         components: {
-            RightSearch,
+            // RightSearch,
             RightColumnNav,
             RightLabelCloud,
             RightClickRank

@@ -46,6 +46,7 @@
     import RightLabelCloud from '../components/RightLabelCloud';
     import RightClickRank from '../components/RightClickRank';
     import {getArticleList} from '../api/api'
+    import {getSearchArticle} from '../api/api'
     export default {
         name: "List",
         components: {
@@ -69,11 +70,17 @@
         },
         data(){
             return{
-                homeArticle:[{}]
+                homeArticle:[{}],
+                vueName:"List.vue"
             }
         },
         created:function(){
-            this._getArticleList()
+            // alert("query:"+JSON.stringify(this.$route.query));
+            if (this.$route.query && this.$route.query.searchKey){
+                this._getSearchArticle(this.$route.query)
+            }else{
+                this._getArticleList()
+            }
         },
         methods: {
             // 获取首页展示的文章列表
@@ -90,6 +97,18 @@
                         window.console.log(error);
                     });
             },
+            _getSearchArticle(json){
+                let vueThis = this;
+                getSearchArticle(json)
+                    .then(function (response) {
+                        if(response.data!==""){
+                            vueThis.homeArticle = response.data;
+                        }
+                    })
+                    .catch(function (error) {
+                        window.console.log(error);
+                    })
+            }
         }
     }
 </script>
