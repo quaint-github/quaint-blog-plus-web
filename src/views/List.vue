@@ -55,15 +55,15 @@
             RightClickRank
         },
         metaInfo: {
-            title: 'ListPage',
+            title: 'Quaint个人博客 - 学无止境',
             meta: [
                 {
                     name: 'keywords',
-                    content: '关键字1,关键字2,关键字3'
+                    content: 'quaint个人博客,quaintBlog,quaint'
                 },
                 {
                     name: 'description',
-                    content: '这是一段网页的描述'
+                    content: '(๑• ₃ •๑)欢迎来到Quaintの博客，(๑> ؂ <๑)这是一个正在成长中的博客，一起成长的还有我的好朋友(> ω <)夏睡醒了秋~'
                 }
             ]
         },
