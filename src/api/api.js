@@ -42,6 +42,14 @@ export const getArticleInfo = (params) => {
     })
 };
 
+// 文章点击排行列表
+export const getArticleClickRank = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/article/click/rank",
+        method: "post",
+        data: params
+    })
+};
 
 // export default {
 //     checkLogin: "http://localhost:8080/member/check/login",

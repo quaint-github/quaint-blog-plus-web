@@ -55,7 +55,7 @@
                 <right-search></right-search>
                 <right-column-nav></right-column-nav>
                 <right-label-cloud></right-label-cloud>
-                <right-click-rank></right-click-rank>
+                <right-click-rank v-on:func="_getArticleInfoById"></right-click-rank>
             </div>
         </article>
     </div>
@@ -93,6 +93,7 @@
         },
         data(){
             return{
+                name: 'Info.vue',
                 articleInfo:{}
             }
         },
@@ -101,7 +102,7 @@
                 let vueThis = this;
                 getArticleInfo(this.$route.query)
                     .then(function (response) {
-                        window.console.log(JSON.stringify(response.data));
+                        // window.console.log(JSON.stringify(response.data));
                         if(response.data!==""){
                             vueThis.articleInfo = response.data;
                         }
@@ -109,12 +110,13 @@
                     .catch(function (error) {
                         window.console.log(error);
                     });
+                document.documentElement.scrollTop = document.body.scrollTop = 0;
             },
             _getArticleInfoById(id){
                 let vueThis = this;
                 getArticleInfo({id:id})
                     .then(function (response) {
-                        window.console.log(JSON.stringify(response.data));
+                        // window.console.log(JSON.stringify(response.data));
                         if(response.data!==""){
                             vueThis.articleInfo = response.data;
                         }
@@ -122,6 +124,7 @@
                     .catch(function (error) {
                         window.console.log(error);
                     });
+                document.documentElement.scrollTop = document.body.scrollTop = 0;
             }
         }
     }
