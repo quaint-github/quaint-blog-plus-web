@@ -30,16 +30,30 @@
 
                 <div class="pagelist"><a title="Total record">&nbsp;<b>45</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_2.html">尾页</a></div>
             </div>
-            <right-nav></right-nav>
+            <div class="sidebar">
+                <right-search></right-search>
+                <right-column-nav></right-column-nav>
+                <right-label-cloud></right-label-cloud>
+                <right-click-rank></right-click-rank>
+            </div>
         </article>
     </div>
 </template>
 
 <script>
-    import RightNav from '../components/RightNav';
+    import RightSearch from '../components/RightSearch';
+    import RightColumnNav from '../components/RightColumnNav';
+    import RightLabelCloud from '../components/RightLabelCloud';
+    import RightClickRank from '../components/RightClickRank';
     import {getArticleList} from '../api/api'
     export default {
         name: "List",
+        components: {
+            RightSearch,
+            RightColumnNav,
+            RightLabelCloud,
+            RightClickRank
+        },
         metaInfo: {
             title: 'ListPage',
             meta: [
@@ -52,9 +66,6 @@
                     content: '这是一段网页的描述'
                 }
             ]
-        },
-        components: {
-            RightNav
         },
         data(){
             return{
