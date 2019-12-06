@@ -36,18 +36,20 @@
                 <!-- 相关文章 -->
                 <div class="otherlink">
                     <h2>相关文章</h2>
-                    <ul v-if="articleInfo.sameArticles">
+                    <ul v-if="articleInfo.sameArticles && articleInfo.sameArticles.length>0">
                         <li v-for="same in articleInfo.sameArticles" :key="same.id" >
                             <a class="a-hover" @click="_getArticleInfoById(same.id)">{{same.articleTitle}}</a>
                         </li>
                     </ul>
-                    <ul v-else><li><a class="a-hover-no-style">没有了</a></li></ul>
+                    <ul v-else>
+                        <div class="gbko"> 暂时没有相关文章 </div>
+                    </ul>
                 </div>
                 <!-- 文章评论 -->
                 <div class="news_pl">
                     <h2>文章评论</h2>
                     <ul>
-                        <div class="gbko"> </div>
+                        <div class="gbko"> 评论功能暂未完成 </div>
                     </ul>
                 </div>
             </div>

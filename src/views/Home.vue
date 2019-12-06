@@ -54,7 +54,7 @@
 
             <!-- 右侧导航 -->
             <div class="sidebar">
-                <div class="about">
+                <div class="about" @click="toAbout">
                     <div class="avatar"> <img src="../assets/blog/images/avatar.jpg" alt=""> </div>
                     <p class="abname">Quaint</p>
                     <p class="abposition">ACG爱好者</p>
@@ -123,6 +123,9 @@
                         window.console.log(error);
                     });
             },
+            toAbout(){
+                this.$router.push('/about')
+            }
         }
     }
 </script>
