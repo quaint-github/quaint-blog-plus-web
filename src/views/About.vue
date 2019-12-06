@@ -3,7 +3,7 @@
         <article>
             <h1 class="t_nav">
                 <span>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span>
-                <a href="/" class="n1">网站首页</a><a href="/" class="n2">关于我</a>
+                <a href="/" class="n1">网站首页</a><a href="/about" class="n2">关于我</a>
             </h1>
             <div class="ab_box">
                 <div class="leftbox">
@@ -26,6 +26,7 @@
                             <br />
                             <p>程 序：Java Vue</p>
                         </div>
+                        <div style="height: 150px;"></div>
                     </div>
                 </div>
                 <div class="rightbox">

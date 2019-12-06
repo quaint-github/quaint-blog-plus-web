@@ -1,12 +1,15 @@
 import axios from "axios"
 
+
 const dev = 'http://localhost:8081';
 const webPrefix = dev;
+
 
 const axiosInstance = axios.create({
     headers: {'Content-Type': 'application/json;charset=utf-8'},// 设置传输内容的类型和编码
     withCredentials: true // 指定某个请求应该发送凭据。允许客户端携带跨域cookie，也需要此配置
 });
+
 
 // 获取首页展示文章
 export const getHomeArticle = (params) => {
@@ -32,7 +35,6 @@ export const getSearchArticle = (params) => {
         data: params
     })
 };
-
 // 获取文章详情展示
 export const getArticleInfo = (params) => {
     return axiosInstance({
@@ -41,7 +43,6 @@ export const getArticleInfo = (params) => {
         data: params
     })
 };
-
 // 文章点击排行列表
 export const getArticleClickRank = (params) => {
     return axiosInstance({
@@ -50,6 +51,22 @@ export const getArticleClickRank = (params) => {
         data: params
     })
 };
+// 获取标签云 列表
+export const getLabelCloud = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/label/list",
+        method: "post",
+        data: params
+    })
+};
+
+
+
+
+
+
+
+
 
 // export default {
 //     checkLogin: "http://localhost:8080/member/check/login",

@@ -8,7 +8,7 @@
             <div class="blogs">
                 <div class="mt20"></div>
 
-                <li v-for="item in homeArticle" :key="item.id">
+                <li v-for="item in articleList" :key="item.id">
                     <span class="blogpic"><a href="/"><img :src="item.mainImageUrl"></a></span>
                     <h3 class="blogtitle"><a href="/">{{item.articleTitle}}</a></h3>
                     <div class="bloginfo">
@@ -70,7 +70,7 @@
         },
         data(){
             return{
-                homeArticle:[{}],
+                articleList:[{}],
                 vueName:"List.vue"
             }
         },
@@ -90,7 +90,7 @@
                     .then(function (response) {
                         // window.console.log(response);
                         if(response.data!=="" && response.data.length>0){
-                            vueThis.homeArticle = response.data;
+                            vueThis.articleList = response.data;
                         }
                     })
                     .catch(function (error) {
@@ -102,7 +102,7 @@
                 getSearchArticle(json)
                     .then(function (response) {
                         if(response.data!==""){
-                            vueThis.homeArticle = response.data;
+                            vueThis.articleList = response.data;
                         }
                     })
                     .catch(function (error) {

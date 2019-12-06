@@ -114,7 +114,7 @@
                 let vueThis = this;
                 getHomeArticle({})
                     .then(function (response) {
-                        window.console.log(response.data);
+                        // window.console.log(response.data);
                         if(response.data!=="" && response.data.length>0){
                             vueThis.homeArticle = response.data;
                         }

@@ -2,14 +2,45 @@
     <div class="cloud">
         <h2 class="hometitle">标签云</h2>
         <ul>
-            <a href="/">陌上花开</a> <a href="/">校园生活</a> <a href="/">html5</a> <a href="/">SumSung</a> <a href="/">青春</a> <a href="/">温暖</a> <a href="/">阳光</a> <a href="/">三星</a><a href="/">索尼</a> <a href="/">华维荣耀</a> <a href="/">三星</a> <a href="/">索尼</a>
+            <a @click="_getLabelArticle" v-for="labelCloud in labelCloudList" :key="labelCloud.id">{{labelCloud.labelName}}</a>
         </ul>
     </div>
 </template>
 
 <script>
+    import {getLabelCloud} from '../api/api'
     export default {
-        name: "RightLLabelCloud"
+        name: "RightLLabelCloud",
+        data(){
+            return{
+                labelCloudList: [{
+                        "id": 1,
+                        "labelName": "Java",
+                        "labelType": 2
+                    }]
+            }
+        },
+        created() {
+            this._getLabelCloud()
+        },
+        methods: {
+            _getLabelCloud(){
+                let vueThis = this;
+                getLabelCloud().then(function (resp) {
+                    if (resp.data){
+                        vueThis.labelCloudList = resp.data;
+                    }
+                }).error(function (err) {
+                    window.console.log(err);
+                });
+            },
+            _getLabelArticle(){
+                // 获取标签文章列表
+                if (this.$parent.name === 'List.vue'){
+                    return
+                }
+            }
+        }
     }
 </script>
 
