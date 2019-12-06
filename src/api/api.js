@@ -59,6 +59,14 @@ export const getLabelCloud = (params) => {
         data: params
     })
 };
+// 通过标签云id 搜索文章列表
+export const getArticleByLabelId = (params) => {
+  return axiosInstance({
+      url: webPrefix + '/label/article/id',
+      method: "post",
+      data: params
+  })
+};
 
 
 

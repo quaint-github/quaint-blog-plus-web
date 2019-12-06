@@ -47,6 +47,7 @@
     import RightClickRank from '../components/RightClickRank';
     import {getArticleList} from '../api/api'
     import {getSearchArticle} from '../api/api'
+    import {getArticleByLabelId} from '../api/api'
     export default {
         name: "List",
         components: {
@@ -78,7 +79,10 @@
             // alert("query:"+JSON.stringify(this.$route.query));
             if (this.$route.query && this.$route.query.searchKey){
                 this._getSearchArticle(this.$route.query)
-            }else{
+            } else if(this.$route.query && this.$route.query.labelId){
+                this._getArticleByLabelId(this.$route.query)
+            }
+            else{
                 this._getArticleList()
             }
         },
@@ -108,6 +112,17 @@
                     .catch(function (error) {
                         window.console.log(error);
                     })
+            },
+            _getArticleByLabelId(json){
+                // window.console.log(json," test");
+                let vueThis = this;
+                getArticleByLabelId({id:json.labelId}).then(function (resp) {
+                    if(resp.data){
+                        vueThis.articleList = resp.data;
+                    }
+                }).catch(function (err) {
+                    window.console.log(err)
+                })
             }
         }
     }

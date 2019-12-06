@@ -2,7 +2,7 @@
     <div class="cloud">
         <h2 class="hometitle">标签云</h2>
         <ul>
-            <a @click="_getLabelArticle" v-for="labelCloud in labelCloudList" :key="labelCloud.id">{{labelCloud.labelName}}</a>
+            <a @click="_getLabelArticle(labelCloud.id)" v-for="labelCloud in labelCloudList" :key="labelCloud.id">{{labelCloud.labelName}}</a>
         </ul>
     </div>
 </template>
@@ -26,18 +26,22 @@
         methods: {
             _getLabelCloud(){
                 let vueThis = this;
-                getLabelCloud().then(function (resp) {
+                getLabelCloud({}).then(function (resp) {
                     if (resp.data){
                         vueThis.labelCloudList = resp.data;
                     }
-                }).error(function (err) {
+                }).catch(function (err) {
                     window.console.log(err);
                 });
             },
-            _getLabelArticle(){
+            _getLabelArticle(labelId){
                 // 获取标签文章列表
-                if (this.$parent.name === 'List.vue'){
-                    return
+                // window.console.log('out '+this.$parent.name);
+                if (this.$parent.vueName === 'List.vue'){
+                    // window.console.log('out');
+                    this.$parent._getArticleByLabelId({labelId:labelId});
+                } else{
+                    this.$router.push({path: '/list',query:{labelId:labelId}});
                 }
             }
         }
