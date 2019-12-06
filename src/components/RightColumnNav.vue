@@ -1,7 +1,7 @@
 <template>
     <div class="lmnav">
         <h2 class="hometitle">栏目导航</h2>
-        <ul class="navbor">
+        <ul class="navbor quaint-text-left">
             <li><a href="/">网站首页</a>
                 <!--<ul>-->
                 <!--<li><a href="#">wo</a></li>-->
@@ -25,7 +25,7 @@
                     <!--<li><a href="#">网站建设</a></li>-->
                 <!--</ul>-->
             </li>
-            <!--<li><a href="#">慢生活</a></li>-->
+            <li><a href="/saying">留言</a></li>
         </ul>
     </div>
 </template>

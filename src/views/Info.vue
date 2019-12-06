@@ -50,6 +50,7 @@
                     <h2>文章评论</h2>
                     <ul>
                         <div class="gbko"> 评论功能暂未完成 </div>
+                        <article-comment></article-comment>
                     </ul>
                 </div>
             </div>
@@ -68,6 +69,7 @@
     import RightColumnNav from '../components/RightColumnNav';
     import RightLabelCloud from '../components/RightLabelCloud';
     import RightClickRank from '../components/RightClickRank';
+    import ArticleComment from '../components/ArticleComment';
     import {getArticleInfo} from '../api/api'
     export default {
         name: "Info",
@@ -75,7 +77,8 @@
             RightSearch,
             RightColumnNav,
             RightLabelCloud,
-            RightClickRank
+            RightClickRank,
+            ArticleComment
         },
         metaInfo: {
             title: 'Quaint个人博客 - 学无止境',
@@ -103,10 +106,10 @@
             _getArticleInfo(){
                 let vueThis = this;
                 getArticleInfo(this.$route.query)
-                    .then(function (response) {
+                    .then( res => {
                         // window.console.log(JSON.stringify(response.data));
-                        if(response.data!==""){
-                            vueThis.articleInfo = response.data;
+                        if(res.data!==""){
+                            vueThis.articleInfo = res.data;
                         }
                     })
                     .catch(function (error) {
@@ -117,14 +120,14 @@
             _getArticleInfoById(id){
                 let vueThis = this;
                 getArticleInfo({id:id})
-                    .then(function (response) {
+                    .then(res => {
                         // window.console.log(JSON.stringify(response.data));
-                        if(response.data!==""){
-                            vueThis.articleInfo = response.data;
+                        if(res.data!==""){
+                            vueThis.articleInfo = res.data;
                         }
                     })
-                    .catch(function (error) {
-                        window.console.log(error);
+                    .catch(err => {
+                        window.console.log(err);
                     });
                 document.documentElement.scrollTop = document.body.scrollTop = 0;
             }

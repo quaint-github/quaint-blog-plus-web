@@ -8,86 +8,34 @@
             </h1>
 
             <div class="leftbox">
-                <div class="ab_box">
-                    <div class="newsview">
-                        <div class="whitebg">
-                            <h2 class="htitle">留言</h2>
-                            <div class="news_infos m20">
-                                <div class="gbox">
-                                    <form action="" method="post" name="form1" id="form1">
-                                        <p> <strong>来说点儿什么吧...</strong></p>
-                                        <p>
-                                            <span> 您的姓名:</span>
-                                            <input name="name" type="text" id="name">*
-                                        </p>
-                                        <input name="email" type="hidden" id="email" value="admin@qq.com">
-                                        <p><span>选择头像:</span> *
-                                            <i>
-                                                <input type="radio" value="../images/tx1.jpg" id="1" name="mycall" style="display:none" selected="">
-                                                <img id="a" src="http://jxhx2.yangqq.com/e/tool/images/tx5.jpg">
-                                            </i>
-                                            <i>
-                                                <input type="radio" value="../images/tx2.jpg" id="2" name="mycall" style="display:none">
-                                                <img id="b" src="http://jxhx2.yangqq.com/e/tool/images/tx5.jpg">
-                                            </i>
-                                        </p>
-                                        <p>
-                                            <span class="tnr">留言内容:</span>
-                                            <textarea name="lytext" cols="60" rows="12" id="lytext"></textarea>
-                                        </p>
-                                        <p>
-                                            <input type="submit" name="Submit3" value="提交">
-                                            <input name="enews" type="hidden" id="enews" value="AddGbook">
-                                        </p>
-                                    </form>
-                                </div>
-                                <div class="fb">
-                                    <ul>
-                                        <span class="tximg"><img src="http://jxhx2.yangqq.com/e/tool/images/tx5.jpg"></span>
-                                        <p class="fbtime"><span>2018-12-26</span> 哒哒</p>
-                                        <p class="fbinfo">很喜欢这个模板感觉做的不错</p>
-                                    </ul>
-                                </div>
-                                <div class="fb">
-                                    <ul>
-                                        <span class="tximg"><img src="http://jxhx2.yangqq.com/e/tool/images/tx5.jpg"></span>
-                                        <p class="fbtime"><span>2018-12-06 </span> dancesmile</p>
-                                        <p class="fbinfo">你好！这是我第一个留言的。</p>
-                                    </ul>
-                                </div>
-                                <div class="hf">
-                                    <ul>
-                                        <p class="zzhf"><font color="#FF0000">站长回复:</font>你好，欢迎您访问我的网站</p>
-                                    </ul>
-                                </div>
-                                <div class="clear"></div>
-                                <div class="pagelist"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div> 功能暂时未实现 </div>
+                <article-comment></article-comment>
             </div>
 
             <div class="rightbox">
-                <!--<right-search></right-search>-->
+                <right-search></right-search>
                 <right-column-nav></right-column-nav>
                 <right-label-cloud></right-label-cloud>
                 <right-click-rank></right-click-rank>
             </div>
+
+
 
         </article>
     </div>
 </template>
 
 <script>
-    // import RightSearch from '../components/RightSearch';
+    import RightSearch from '../components/RightSearch';
+    import ArticleComment from '../components/ArticleComment';
     import RightColumnNav from '../components/RightColumnNav';
     import RightLabelCloud from '../components/RightLabelCloud';
     import RightClickRank from '../components/RightClickRank';
     export default {
         name: "Saying",
         components: {
-            // RightSearch,
+            RightSearch,
+            ArticleComment,
             RightColumnNav,
             RightLabelCloud,
             RightClickRank
