@@ -118,9 +118,7 @@
 
                 // 获取评论信息
                 getCommentByArticleId(this.$route.query).then(res =>{
-                    if(res.data){
-                        vueThis.commentList = res.data;
-                    }
+                    vueThis.commentList = res.data;
                 }).catch(err =>{
                     window.console.log(err)
                 });
@@ -130,8 +128,6 @@
             },
             _getArticleInfoById(id){
                 let vueThis = this;
-
-                alert("666")
 
                 // 获取文章信息
                 getArticleInfo({id:id}).then(res => {
@@ -145,9 +141,7 @@
 
                 // 获取评论信息
                 getCommentByArticleId({id:id}).then(res =>{
-                    if(res.data){
-                        vueThis.commentList = res.data;
-                    }
+                    vueThis.commentList = res.data;
                 }).catch(err =>{
                     window.console.log(err)
                 });
