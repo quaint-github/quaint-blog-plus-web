@@ -8,8 +8,7 @@
             </h1>
 
             <div class="leftbox">
-                <div> 功能暂时未实现 </div>
-                <article-comment></article-comment>
+                <article-comment :article-id="0" :comment-list="commentList"></article-comment>
             </div>
 
             <div class="rightbox">
@@ -18,8 +17,6 @@
                 <right-label-cloud></right-label-cloud>
                 <right-click-rank></right-click-rank>
             </div>
-
-
 
         </article>
     </div>
@@ -31,6 +28,7 @@
     import RightColumnNav from '../components/RightColumnNav';
     import RightLabelCloud from '../components/RightLabelCloud';
     import RightClickRank from '../components/RightClickRank';
+    import {getCommentByArticleId} from '../api/api'
     export default {
         name: "Saying",
         components: {
@@ -39,6 +37,27 @@
             RightColumnNav,
             RightLabelCloud,
             RightClickRank
+        },
+        created: function(){
+          this._getCommentByArticleId()
+        },
+        data(){
+            return{
+                commentList:[]
+            }
+        },
+        methods: {
+            // 获取评论信息
+            _getCommentByArticleId(){
+                let vueThis = this;
+                getCommentByArticleId({id:0}).then(res =>{
+                    if(res.data){
+                        vueThis.commentList = res.data;
+                    }
+                }).catch(err =>{
+                    window.console.log(err)
+                });
+            }
         },
         metaInfo: {
             title: 'Quaint个人博客 - 留言',
@@ -58,20 +77,4 @@
 
 <style scoped>
 
-    /* 头像样式 */
-    span.tximg { display: block; float: left; margin-right: 10px; }
-    /* 提交按钮 样式*/
-    .gbox input[type="submit"] { display: block; background: #303030; color: #fff; border: 0; line-height: 30px; padding: 0 20px; border-radius: 5px; float: right; }
-    .gbox { padding: 0; overflow: hidden; }
-    .gbox p { margin-bottom: 10px; overflow: hidden; }
-    .gbox i { display: block; float: left; margin-right: 10px; }
-    .gbox i input { margin: 10px auto; display: block; }
-    /* 评论样式 回复样式 */
-    p.fbtime { color: #000; }
-    .fbtime span { float: right; color: #999; font-size: 12px; overflow: hidden; white-space: nowrap; }
-    p.fbinfo { margin: 10px 0; }
-    .fb ul { margin: 10px 0; padding: 20px 10px; border-bottom: #ececec 1px solid; }
-    .hf ul { padding: 10px 10px; background: #f9f9f9; }
-    .hf { padding-bottom: 20px; border-bottom: #dedddd 1px dashed; }
-    textarea#lytext { width: 99%; }
 </style>

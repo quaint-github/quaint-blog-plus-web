@@ -67,6 +67,14 @@ export const getArticleByLabelId = (params) => {
       data: params
   })
 };
+// 通过文章id 获取留言和评论
+export const getCommentByArticleId = (params) => {
+    return axiosInstance({
+        url: webPrefix + '/article/comment/list',
+        method: "post",
+        data: params
+    })
+};
 
 
 

@@ -43,7 +43,7 @@
                                 {{label}}
                             </a>
                         </span>
-                        <span class="dtime">{{item.updateTime}}</span>
+                        <span class="dtime">{{item.createTime}}</span>
                         <span class="viewnum">浏览（<a href="/">{{item.readNum}}</a>）</span>
                         <span class="readmore">
                             <router-link :to="{path:'/info',query:{id:item.id}}">阅读原文</router-link>

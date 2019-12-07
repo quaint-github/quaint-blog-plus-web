@@ -9,8 +9,8 @@
                 <div class="mt20"></div>
 
                 <li v-for="item in articleList" :key="item.id">
-                    <span class="blogpic"><a href="/"><img :src="item.mainImageUrl"></a></span>
-                    <h3 class="blogtitle"><a href="/">{{item.articleTitle}}</a></h3>
+                    <span class="blogpic"><router-link :to="{path:'/info',query:{id:item.id}}"><img :src="item.mainImageUrl"></router-link></span>
+                    <h3 class="blogtitle"><router-link :to="{path:'/info',query:{id:item.id}}">{{item.articleTitle}}</router-link></h3>
                     <div class="bloginfo">
                         <p>{{item.articleAbstract}}</p>
                     </div>
@@ -20,8 +20,8 @@
                                 {{label}}
                             </a>
                         </span>
-                        <span class="dtime">{{item.updateTime}}</span>
-                        <span class="viewnum">浏览（<a href="/">{{item.readNum}}</a>）</span>
+                        <span class="dtime">{{item.createTime}}</span>
+                        <span class="viewnum">浏览（<a>{{item.readNum}}</a>）</span>
                         <span class="readmore">
                             <router-link :to="{path:'/info',query:{id:item.id}}">阅读原文</router-link>
                         </span>
@@ -105,6 +105,7 @@
                 let vueThis = this;
                 getSearchArticle(json)
                     .then(function (response) {
+                        // window.console.log(response)
                         if(response.data!==""){
                             vueThis.articleList = response.data;
                         }

@@ -11,7 +11,7 @@
                     <h3 class="news_title">{{articleInfo.articleTitle}}</h3>
                     <div class="news_author">
                         <span class="au01"><a href="http://quaint-aini.com">{{articleInfo.nickName}}</a></span>
-                        <span class="au02">{{articleInfo.updateTime}}</span><span class="au03">共<b>
+                        <span class="au02">{{articleInfo.createTime}}</span><span class="au03">共<b>
                         {{articleInfo.readNum}}</b>人围观</span></div>
                     <div class="tags">
                         <router-link to="/" v-for="label in articleInfo.labels" :key="label">{{label}}</router-link>
@@ -49,8 +49,7 @@
                 <div class="news_pl">
                     <h2>文章评论</h2>
                     <ul>
-                        <div class="gbko"> 评论功能暂未完成 </div>
-                        <article-comment></article-comment>
+                        <article-comment :article-id="articleInfo.id" :comment-list="commentList"></article-comment>
                     </ul>
                 </div>
             </div>
@@ -71,6 +70,7 @@
     import RightClickRank from '../components/RightClickRank';
     import ArticleComment from '../components/ArticleComment';
     import {getArticleInfo} from '../api/api'
+    import {getCommentByArticleId} from '../api/api'
     export default {
         name: "Info",
         components: {
@@ -99,36 +99,60 @@
         data(){
             return{
                 name: 'Info.vue',
-                articleInfo:{}
+                articleInfo:{},
+                commentList:[]
             }
         },
         methods:{
             _getArticleInfo(){
                 let vueThis = this;
-                getArticleInfo(this.$route.query)
-                    .then( res => {
-                        // window.console.log(JSON.stringify(response.data));
-                        if(res.data!==""){
-                            vueThis.articleInfo = res.data;
-                        }
-                    })
-                    .catch(function (error) {
-                        window.console.log(error);
-                    });
+                // 获取文章信息
+                getArticleInfo(this.$route.query).then( res => {
+                    // window.console.log(JSON.stringify(response.data));
+                    if(res.data){
+                        vueThis.articleInfo = res.data;
+                    }
+                }).catch(function (error) {
+                    window.console.log(error);
+                });
+
+                // 获取评论信息
+                getCommentByArticleId(this.$route.query).then(res =>{
+                    if(res.data){
+                        vueThis.commentList = res.data;
+                    }
+                }).catch(err =>{
+                    window.console.log(err)
+                });
+
+                // 返回顶部
                 document.documentElement.scrollTop = document.body.scrollTop = 0;
             },
             _getArticleInfoById(id){
                 let vueThis = this;
-                getArticleInfo({id:id})
-                    .then(res => {
-                        // window.console.log(JSON.stringify(response.data));
-                        if(res.data!==""){
-                            vueThis.articleInfo = res.data;
-                        }
-                    })
-                    .catch(err => {
-                        window.console.log(err);
-                    });
+
+                alert("666")
+
+                // 获取文章信息
+                getArticleInfo({id:id}).then(res => {
+                    // window.console.log(JSON.stringify(response.data));
+                    if(res.data){
+                        vueThis.articleInfo = res.data;
+                    }
+                }).catch(err => {
+                    window.console.log(err);
+                });
+
+                // 获取评论信息
+                getCommentByArticleId({id:id}).then(res =>{
+                    if(res.data){
+                        vueThis.commentList = res.data;
+                    }
+                }).catch(err =>{
+                    window.console.log(err)
+                });
+
+                // 返回顶部
                 document.documentElement.scrollTop = document.body.scrollTop = 0;
             }
         }
