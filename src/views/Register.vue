@@ -145,14 +145,25 @@
                     this.registerTip.showErr = true;
                 }else{
                     this.registerTip.showErr = false;
-
-                    // todo 封装数据 编写后端接口
-                    registerMember().then(res =>{
-                        window.console.log(res)
-                    })
-
-
-
+                    // 封装数据
+                    let param = {
+                        "username":this.username.val,
+                        "nickName":this.nickName.val,
+                        "pwd":this.pwd.val,
+                        "rePwd":this.rePwd.val
+                    };
+                    let vueThis = this;
+                    registerMember(param).then(res =>{
+                        window.console.log(res);
+                        vueThis.$store.commit('auth_success',{"token":"token","memberInfo":res.data});
+                        vueThis.$router.push('/');
+                    }).catch(err => {
+                        vueThis.registerTip = {
+                            showErr: true,
+                            msg: '服务器繁忙，请稍后重试！'
+                        };
+                        window.console.log(err);
+                    });
                 }
 
             },

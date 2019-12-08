@@ -106,8 +106,7 @@
                 let vueThis = this;
 
                 checkLogin({username: username, password:password}).then(res => {
-                        window.console.log(res.data);
-                        window.console.log(res.data.headImgUrl);
+                        // window.console.log(res.data);
                         if(res.data){
                             vueThis.$store.commit('auth_success',{"token":"token","memberInfo":res.data});
                             vueThis.$router.push('/');

@@ -7,15 +7,16 @@
                 <img v-if="this.$store.state.memberInfo" class="_3LHFA-" :src="this.$store.state.memberInfo.headImgUrl">
                 <img v-else class="_3LHFA-" src="http://qzapp.qlogo.cn/qzapp/100410602/9C15C6F8B2408C836063FDBBA72B92DC/100" alt="">
                 <div class="_3GKFE3">
-                    <textarea class="_1u_H4i" placeholder="说点什么吧..."></textarea>
+                    <textarea v-on:focus="sayFocus" v-model="memberSay" class="_1u_H4i" placeholder="说点什么吧..."></textarea>
 
                     <div class="_3IXP9Q" style="display: flex;">
                         <div class="SKZUyR">
                             <!--<span>⌘ + Return 发表</span>-->
+                            <span v-if="sayErr" style="color: red;">随便说点什么吧～</span>
                         </div>
                         <div class="_3Tp4of">
-                            <button type="button" class="_1OyPqC _3Mi9q9 _1YbC5u"><span>bui～</span></button>
-                            <button type="button" class="_1OyPqC _2nzlC_"><span>取消</span></button>
+                            <button @click="clickBui" type="button" class="_1OyPqC _3Mi9q9 _1YbC5u"><span>bui～</span></button>
+                            <button @click="clickCancel" type="button" class="_1OyPqC _2nzlC_"><span>取消</span></button>
                         </div>
                     </div>
                 </div>
@@ -50,12 +51,12 @@
                             </div>
                             <div class="_2bDGm4">{{commentItem.comContent}}</div>
                             <div class="_2ti5br">
-                                <div class="_3MyyYc">
-                                    <span class="_1Jvkh4" role="button" tabindex="-1" aria-label="添加评论">回复</span>
-                                </div>
-                                <div class="_1vPqGj">
-                                    <span class="_1NgfK- _10lQTl _1Jvkh4" role="button" tabindex="-1" aria-label="删除评论">删除</span>
-                                </div>
+                                <!--<div class="_3MyyYc">-->
+                                    <!--<span class="_1Jvkh4" role="button" tabindex="-1" aria-label="添加评论">回复</span>-->
+                                <!--</div>-->
+                                <!--<div class="_1vPqGj">-->
+                                    <!--<span class="_1NgfK- _10lQTl _1Jvkh4" role="button" tabindex="-1" aria-label="删除评论">删除</span>-->
+                                <!--</div>-->
                             </div>
                             <!-- 回复该评论的其他人 -->
                             <div class="_2kvBge">
@@ -75,12 +76,12 @@
                                     </div>
                                     <div class="_2bDGm4">{{reComment.aitMemberId?'@'+reComment.aitMemberName+'：':''}}{{reComment.reContent}}</div>
                                     <div class="_2ti5br">
-                                        <div class="_3MyyYc">
-                                            <span class="_1Jvkh4" role="button" tabindex="-1" aria-label="回复评论"> 回复</span>
-                                        </div>
-                                        <div class="_1vPqGj">
-                                            <span class="_1NgfK- _10lQTl _1Jvkh4" role="button" tabindex="-1" aria-label="删除评论"> 删除</span>
-                                        </div>
+                                        <!--<div class="_3MyyYc">-->
+                                            <!--<span class="_1Jvkh4" role="button" tabindex="-1" aria-label="回复评论"> 回复</span>-->
+                                        <!--</div>-->
+                                        <!--<div class="_1vPqGj">-->
+                                            <!--<span class="_1NgfK- _10lQTl _1Jvkh4" role="button" tabindex="-1" aria-label="删除评论"> 删除</span>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
@@ -100,10 +101,52 @@
     </div>
 </template>
 <script>
+    import {articleAddComment} from '../api/api'
     export default {
         name: "ArticleComment",
         props:['articleId','commentList'],
+        data(){
+            return{
+                memberSay:"",
+                sayErr:false
+            }
+        },
         methods: {
+            sayFocus(){
+                this.sayErr = false;
+            },
+            clickCancel(){
+              this.memberSay=""
+            },
+            clickBui(){
+                if(this.$store.state.memberInfo.id===0){
+                    this.$router.push('/login')
+                }else if (this.memberSay!=="") {
+                    // 执行留言逻辑
+                    let memberInfo = this.$store.state.memberInfo;
+                    let param = {
+                        "articleId":this.articleId,
+                        "memberId": memberInfo.id,
+                        // 父评论id
+                        "parentId": null,
+                        // 回复的用户id
+                        "reId": null,
+                        "commentContent":this.memberSay
+                    };
+                    articleAddComment(param).then(res =>{
+                        window.console.log(res.date);
+                        if (res.data){
+                            alert("留言成功！");
+                            this.$router.go(0);
+                        }
+                    }).catch(err =>{
+                        alert("留言繁忙，请稍后！");
+                        window.console.log(err);
+                    })
+                }else{
+                    this.sayErr = true;
+                }
+            }
         }
     }
 </script>

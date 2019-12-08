@@ -10,6 +10,8 @@ const axiosInstance = axios.create({
     withCredentials: true // 指定某个请求应该发送凭据。允许客户端携带跨域cookie，也需要此配置
 });
 
+// 定义接口开始
+
 
 // 获取首页展示文章
 export const getHomeArticle = (params) => {
@@ -86,7 +88,15 @@ export const checkLogin = (params) => {
 // 用户注册
 export const registerMember = (params) => {
     return axiosInstance({
-        url: webPrefix + "/member/register",
+        url: webPrefix + "/member/register/in",
+        method: "post",
+        data: params
+    })
+};
+// 用户评论
+export const articleAddComment = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/article/comment/add",
         method: "post",
         data: params
     })
