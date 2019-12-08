@@ -22,31 +22,31 @@
                                 </div>
                                 <form class="quaint-login-margin-top-from">
                                     <div class="mhy-form-input input-item">
-                                        <div class="input-label">Quaint号</div>
+                                        <div class="input-label"><span style="color: red">* </span>用户名</div>
                                         <div class="input-container">
                                             <label>
-                                                <input type="text"/>
+                                                <input type="text" v-model="loginForm.username"/>
                                             </label>
                                         </div>
-                                        <p class="error-text" v-if="showNameErr">
+                                        <p class="error-text" v-if="showNameErr.show">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
-                                            账号不能为空
+                                            {{showNameErr.msg}}
                                         </p>
                                     </div>
                                     <div class="mhy-form-input input-item input-error">
-                                        <div class="input-label">密码</div>
+                                        <div class="input-label"><span style="color: red">* </span>密码</div>
                                         <div class="input-container">
                                             <label>
-                                                <input type="password"/>
+                                                <input type="password" v-model="loginForm.password"/>
                                             </label>
                                         </div>
-                                        <p class="error-text" v-if="showPassErr">
+                                        <p class="error-text" v-if="showPassErr.show">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
-                                            密码不能为空
+                                            {{showPassErr.msg}}
                                         </p>
                                     </div>
                                     <div class="mhy-button login-btn is-block">
-                                        <button type="submit" click-upload="" class="">
+                                        <button type="button" @click="_loginIn">
                                             登 录
                                         </button>
                                     </div>
@@ -75,6 +75,7 @@
 <script>
     import RightColumnNav from '../components/RightColumnNav'
     import RightSearch from '../components/RightSearch'
+    import {checkLogin} from '../api/api'
     export default {
         name: "Login",
         components: {
@@ -83,11 +84,52 @@
         },
         data(){
             return{
-                showNameErr:false,
-                showPassErr:false
+                showNameErr:{
+                    show:false,
+                    msg:"用户名不能为空"
+                },
+                showPassErr:{
+                    show:false,
+                    msg:"密码不能为空"
+                },
+                loginForm: {
+                    username: "quaint",
+                    password: "777123"
+                }
             }
         },
         methods: {
+            _loginIn(){
+                let username = this.loginForm.username;
+                let password = this.loginForm.password;
+
+                let vueThis = this;
+
+                checkLogin({username: username, password:password}).then(res => {
+                        window.console.log(res.data);
+                        window.console.log(res.data.headImgUrl);
+                        if(res.data){
+                            vueThis.$store.commit('auth_success',{"token":"token","memberInfo":res.data});
+                            vueThis.$router.push('/');
+                            vueThis.showPassErr = {
+                                show: false,
+                                msg: ''
+                            };
+                        }else {
+                            vueThis.showPassErr = {
+                                show: true,
+                                msg: '账号密码不匹配，请检查后重试！'
+                            };
+                        }
+                    }).catch(err => {
+                        vueThis.showPassErr = {
+                            show: true,
+                            msg: '服务器繁忙，请稍后重试！'
+                        };
+                        window.console.log(err);
+                    });
+
+            },
             toAbout(){
                 this.$router.push('/about')
             },

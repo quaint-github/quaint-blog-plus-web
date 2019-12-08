@@ -11,6 +11,14 @@
     import BlogFooter from '../components/BlogFooter'
     export default {
         name: "Index",
+        computed: {
+            memberInfoId () {
+                return this.$store.state.memberInfo.id;
+            },
+            memberInfo(){
+                return this.$store.state.memberInfo;
+            }
+        },
         components: {
             BlogHead,
             BlogFooter

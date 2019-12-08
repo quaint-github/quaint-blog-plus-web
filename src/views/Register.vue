@@ -23,43 +23,59 @@
                                 </div>
                                 <form class="quaint-login-margin-top-from">
                                     <div class="mhy-form-input input-item">
-                                        <div class="input-label">Quaint号</div>
+                                        <div class="input-label"><span style="color: red">* </span>用户名</div>
                                         <div class="input-container">
                                             <label>
-                                                <input type="text"/>
+                                                <input v-on:focus="usernameFocus" v-on:blur="usernameBlur" v-model="username.val" type="text"/>
                                             </label> <!---->
                                         </div>
-                                        <p class="error-text" v-if="showNameErr.show">
+                                        <p class="error-text" v-if="username.showErr">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{showNameErr.msg}}
+                                            {{username.msg}}
+                                        </p>
+                                    </div>
+                                    <div class="mhy-form-input input-item">
+                                        <div class="input-label"><span style="color: red">* </span>昵称</div>
+                                        <div class="input-container">
+                                            <label>
+                                                <input v-on:focus="nickFocus" v-on:blur="nickBlur"  v-model="nickName.val" type="text"/>
+                                            </label> <!---->
+                                        </div>
+                                        <p class="error-text" v-if="nickName.showErr">
+                                            <i class="anticon mhy-icon icon-closecircle"></i>
+                                            {{nickName.msg}}
                                         </p>
                                     </div>
                                     <div class="mhy-form-input input-item input-error">
-                                        <div class="input-label">密码</div>
+                                        <div class="input-label"><span style="color: red">* </span>密码</div>
                                         <div class="input-container">
                                             <label>
-                                                <input type="password"/>
+                                                <input v-on:focus="pwdFocus" v-on:blur="pwdBlur" v-model="pwd.val" type="password"/>
                                             </label>
                                         </div>
-                                        <p class="error-text" v-if="showPassErr.show">
+                                        <p class="error-text" v-if="pwd.showErr">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{showPassErr.msg}}
+                                            {{pwd.msg}}
                                         </p> <!---->
                                     </div>
                                     <div class="mhy-form-input input-item input-error">
-                                        <div class="input-label">确认密码</div>
+                                        <div class="input-label"><span style="color: red">* </span>确认密码</div>
                                         <div class="input-container">
                                             <label>
-                                                <input type="password"/>
+                                                <input v-on:focus="rePwdFocus" v-on:blur="rePwdBlur" v-model="rePwd.val" type="password"/>
                                             </label>
                                         </div>
-                                        <p class="error-text" v-if="showRePassErr.show">
+                                        <p class="error-text" v-if="rePwd.showErr">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{showRePassErr.msg}}
-                                        </p> <!---->
+                                            {{rePwd.msg}}
+                                        </p>
+                                        <p class="error-text" v-if="registerTip.showErr">
+                                            <i class="anticon mhy-icon icon-closecircle"></i>
+                                            {{registerTip.msg}}
+                                        </p>
                                     </div>
                                     <div class="mhy-button login-btn is-block">
-                                        <button type="submit" click-upload="" class="">
+                                        <button @click="_registerIn" type="button" class="">
                                             注 册
                                         </button>
                                     </div>
@@ -88,6 +104,7 @@
 <script>
     import RightColumnNav from '../components/RightColumnNav'
     import RightSearch from '../components/RightSearch'
+    import {registerMember} from '../api/api'
     export default {
         name: "Register",
         components: {
@@ -96,27 +113,109 @@
         },
         data(){
             return{
-                showNameErr:{
-                    show:false,
+                username:{
+                    val:"",
+                    showErr:false,
                     msg:"用户名不能为空"
                 },
-                showPassErr:{
-                    show:false,
+                nickName:{
+                    val:"",
+                    showErr:false,
+                    msg:"昵称不能为空"
+                },
+                pwd:{
+                    val:"",
+                    showErr:false,
                     msg:"密码不能为空"
                 },
-                showRePassErr:{
-                    show:false,
-                    msg:"确认密码不能为空"
+                rePwd:{
+                    val:"",
+                    showErr:false,
+                    msg:"校验密码不能为空"
+                },
+                registerTip:{
+                    showErr:false,
+                    msg:"请按照要求完成注册～"
                 }
             }
         },
         methods: {
+            _registerIn(){
+                if(this.username.showErr || this.nickName.showErr || this.pwd.showErr || this.rePwd.showErr){
+                    this.registerTip.showErr = true;
+                }else{
+                    this.registerTip.showErr = false;
+
+                    // todo 封装数据 编写后端接口
+                    registerMember().then(res =>{
+                        window.console.log(res)
+                    })
+
+
+
+                }
+
+            },
             toAbout(){
                 this.$router.push('/about')
             },
             toLogin(){
                 this.$router.push('/login')
+            },
+            // 校验用户名非空
+            usernameFocus(){
+                this.username.showErr = false;
+                this.registerTip.showErr = false;
+            },
+            usernameBlur(){
+                // window.console.log(JSON.stringify(this.username))
+                if (this.username.val===""){
+                    this.username.showErr = true
+                }
+            },
+            // 校验昵称非空
+            nickFocus(){
+                this.nickName.showErr = false;
+                this.registerTip.showErr = false;
+            },
+            nickBlur(){
+                // window.console.log(JSON.stringify(this.username))
+                if (this.nickName.val===""){
+                    this.nickName.showErr = true
+                }
+            },
+            // 校验密码非空
+            pwdFocus(){
+                this.pwd.showErr = false;
+                this.registerTip.showErr = false;
+            },
+            pwdBlur(){
+                window.console.log(JSON.stringify(this.pwd))
+                if (this.pwd.val===""){
+                    this.pwd.showErr = true
+                }
+                if (this.rePwd.val === this.pwd.val){
+                    this.rePwd.showErr = false;
+                }
+            },
+            // 校验重复密码是否非空
+            rePwdFocus(){
+                this.rePwd.showErr = false;
+                this.registerTip.showErr = false;
+            },
+            rePwdBlur(){
+                // window.console.log(JSON.stringify(this.username))
+                if (this.rePwd.val===""){
+                    this.rePwd.showErr = true;
+                    this.rePwd.msg = "校验密码不能为空";
+                    return;
+                }
+                if (this.rePwd.val !== this.pwd.val){
+                    this.rePwd.showErr = true;
+                    this.rePwd.msg = "两次密码必须相同";
+                }
             }
+
         }
     }
 </script>

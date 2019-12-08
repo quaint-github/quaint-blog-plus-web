@@ -75,6 +75,25 @@ export const getCommentByArticleId = (params) => {
         data: params
     })
 };
+// 校验登录
+export const checkLogin = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/member/check/login",
+        method: "post",
+        data: params
+    })
+};
+// 用户注册
+export const registerMember = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/member/register",
+        method: "post",
+        data: params
+    })
+};
+
+
+
 
 
 
