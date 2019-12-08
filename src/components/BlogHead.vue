@@ -10,6 +10,7 @@
                         <!--<li><router-link to="/share">模板分享</router-link></li>-->
                         <li><router-link to="/list">学无止境</router-link></li>
                         <li><router-link to="/saying">留言</router-link></li>
+                        <li><router-link to="/login">登录</router-link></li>
                     </ul>
                 </nav>
             </div>

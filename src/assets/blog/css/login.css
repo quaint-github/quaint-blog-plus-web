@@ -1,0 +1,183 @@
+.quaint-login-margin-top-from{
+    margin-top: 3rem;
+}
+
+/* 该登录样式来源 --> 米哈游 */
+#root {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: #f7f7f7;
+    position: relative;
+}
+.mhy-verify-body-container {
+    width: 100%;
+    margin: 20px 0px;
+}
+.mhy-verify-container {
+    width: 34rem;
+    margin: auto;
+}
+.mhy-verify-container .mihoyo-logo {
+    width: 12rem;
+    margin: 3rem auto;
+    display: block;
+}
+.mhy-verify-container .mhy-container-content {
+    -webkit-box-shadow: 0 20px 20px -10px rgba(0,0,0,.1);
+    box-shadow: 0 20px 20px -10px rgba(0,0,0,.1);
+    min-height: 34rem;
+}
+.mhy-container-content {
+    color: #4c4c4c;
+    background-color: #fff;
+    padding: 3rem 7rem 5rem;
+    border-radius: .2rem;
+}
+.mhy-login .mihoyo-logo {
+    display: none;
+}
+.mhy-verify-container .mihoyo-logo {
+    width: 12rem;
+    margin: 3rem auto;
+    display: block;
+}
+.mhy-tabs.tabs-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.mhy-login .input-item, .mhy-login .login-tab {
+    margin-bottom: 1rem;
+}
+.mhy-tabs {
+    width: 100%;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #f5f5f5;
+    position: relative;
+}
+.mhy-tabs .tab-item.active {
+    font-weight: 700;
+    color: #333333;
+}
+.mhy-tabs.tabs-flex .tab-item {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.mhy-tabs .tab-item {
+    text-align: center;
+    padding: 1rem;
+    line-height: 2rem;
+    cursor: pointer;
+    display: inline-block;
+}
+.quaint-tab-item{
+    text-align: center;
+    padding: 1rem 0px;
+    line-height: 2rem;
+    display: inline-block;
+}
+.mhy-tabs .tab-active-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: .25rem;
+    background-color: #333333;
+}
+.mhy-form-input {
+    padding-top: 1.5rem;
+    font-size: 1.2rem;
+    position: relative;
+    line-height: 1.5rem;
+}
+.mhy-form-input .input-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid #f5f5f5;
+    position: relative;
+}
+.mhy-form-input .input-container input {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    z-index: 2;
+    border: none;
+    width: 100%;
+    color: #4c4c4c;
+    font-weight: 300;
+    padding: .4rem 0;
+    background-color: transparent;
+}
+#root input {
+    outline: none;
+    padding: .4rem 0;
+    font-size: inherit;
+}
+.mhy-form-input .input-label {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding: .4rem 0;
+    color: #b3b3b3;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    font-weight: 300;
+}
+.mhy-form-input .input-container .input-inner-btn {
+    width: 8rem;
+    text-align: center;
+    padding: .6rem 0;
+    font-size: 1rem;
+    color: #333333;
+    cursor: pointer;
+    line-height: 1.1rem;
+}
+.mhy-button.is-block {
+    display: block;
+}
+.mhy-login .login-btn {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+.mhy-button {
+    text-align: center;
+    display: inline-block;
+}
+.mhy-button a, .mhy-button button {
+    display: inline-block;
+    border: 1px solid #333333;
+    width: 100%;
+    line-height: 3.6rem;
+    padding: 0 3rem;
+    background-color: #333333;
+    border-radius: .2rem;
+    color: #fff;
+    font-size: 1.2rem;
+}
+.mhy-login .register-bar {
+    color: #333333;
+    font-size: 1rem;
+    font-weight: 200;
+    text-align: left;
+}
+#root a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #333333;
+}
+.mhy-login .register-bar .to-register {
+    float: right;
+    font-weight: 400;
+}
+.mhy-form-input .error-text {
+    color: #f73131;
+    font-size: 1rem;
+    line-height: 1rem;
+    padding: .7rem 0 .3rem;
+}

@@ -1,5 +1,5 @@
 <template>
-    <div id="note-page-comment">
+    <div id="note-page-comment" class="quaint-margin-top-20px">
         <section class="ouvJEz">
             <!-- 一层 -->
             <div class="_26JdYM">

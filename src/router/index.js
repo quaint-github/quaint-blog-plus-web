@@ -7,6 +7,8 @@ import Saying from "../views/Saying";
 import Info from "../views/Info";
 import Share from "../views/Share";
 import List from "../views/List";
+import Login from "../views/Login";
+import Register from "../views/Register";
 
 Vue.use(Router);
 
@@ -48,10 +50,17 @@ export default new Router({
                 {
                     path: '/list',
                     component: List
+                },
+                {
+                    path: '/login',
+                    component: Login
+                },
+                {
+                    path: '/register',
+                    component: Register
                 }
-
             ]
-        }
+        },
     ]
 })
 
