@@ -24,7 +24,9 @@
                                     <div class="mhy-form-input input-item">
                                         <div class="input-label">Quaint号</div>
                                         <div class="input-container">
-                                            <input type="text"> <!---->
+                                            <label>
+                                                <input type="text"/>
+                                            </label>
                                         </div>
                                         <p class="error-text" v-if="showNameErr">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
@@ -34,12 +36,14 @@
                                     <div class="mhy-form-input input-item input-error">
                                         <div class="input-label">密码</div>
                                         <div class="input-container">
-                                            <input type="password">
+                                            <label>
+                                                <input type="password"/>
+                                            </label>
                                         </div>
                                         <p class="error-text" v-if="showPassErr">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
                                             密码不能为空
-                                        </p> <!---->
+                                        </p>
                                     </div>
                                     <div class="mhy-button login-btn is-block">
                                         <button type="submit" click-upload="" class="">

@@ -2,7 +2,7 @@
     margin-top: 3rem;
 }
 
-/* 该登录样式来源 --> 米哈游 */
+/* 仅用于个人学习，记录技术分享，该登录样式来源 --> 米哈游 技术宅拯救世界的作品*/
 #root {
     width: 100%;
     height: 100%;
@@ -123,7 +123,7 @@
     top: 0;
     left: 0;
     padding: .4rem 0;
-    color: #b3b3b3;
+    color: #727272;
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;

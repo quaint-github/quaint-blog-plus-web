@@ -25,31 +25,37 @@
                                     <div class="mhy-form-input input-item">
                                         <div class="input-label">Quaint号</div>
                                         <div class="input-container">
-                                            <input type="text"> <!---->
+                                            <label>
+                                                <input type="text"/>
+                                            </label> <!---->
                                         </div>
-                                        <p class="error-text" v-if="showNameErr">
+                                        <p class="error-text" v-if="showNameErr.show">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
-                                            账号不能为空
+                                            {{showNameErr.msg}}
                                         </p>
                                     </div>
                                     <div class="mhy-form-input input-item input-error">
                                         <div class="input-label">密码</div>
                                         <div class="input-container">
-                                            <input type="password">
+                                            <label>
+                                                <input type="password"/>
+                                            </label>
                                         </div>
-                                        <p class="error-text" v-if="showPassErr">
+                                        <p class="error-text" v-if="showPassErr.show">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
-                                            密码不能为空
+                                            {{showPassErr.msg}}
                                         </p> <!---->
                                     </div>
                                     <div class="mhy-form-input input-item input-error">
                                         <div class="input-label">确认密码</div>
                                         <div class="input-container">
-                                            <input type="password">
+                                            <label>
+                                                <input type="password"/>
+                                            </label>
                                         </div>
-                                        <p class="error-text" v-if="showPassErr">
+                                        <p class="error-text" v-if="showRePassErr.show">
                                             <i class="anticon mhy-icon icon-closecircle"></i>
-                                            密码不能为空
+                                            {{showRePassErr.msg}}
                                         </p> <!---->
                                     </div>
                                     <div class="mhy-button login-btn is-block">
@@ -90,8 +96,18 @@
         },
         data(){
             return{
-                showNameErr:false,
-                showPassErr:false
+                showNameErr:{
+                    show:false,
+                    msg:"用户名不能为空"
+                },
+                showPassErr:{
+                    show:false,
+                    msg:"密码不能为空"
+                },
+                showRePassErr:{
+                    show:false,
+                    msg:"确认密码不能为空"
+                }
             }
         },
         methods: {
