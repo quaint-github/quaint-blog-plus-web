@@ -32,7 +32,7 @@
                 <div class="rightbox">
                     <div class="aboutme">
                         <h2 class="hometitle">关于我</h2>
-                        <div class="avatar"> <img src="http://quaint-aini.com/static/blog/image/home/home-quaint.jpg"> </div>
+                        <div class="avatar"> <img src="../assets/blog/images/quaint-head.png"> </div>
                         <div class="ab_con">
                             <p>网名：Quaint</p>
                             <p>职业：ACG爱好者 </p>

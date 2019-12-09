@@ -14,14 +14,15 @@
                             <!--<span>⌘ + Return 发表</span>-->
                             <span v-if="sayErr" style="color: red;">随便说点什么吧～</span>
                         </div>
-                        <div class="_3Tp4of">
-                            <button @click="clickBui" type="button" class="_1OyPqC _3Mi9q9 _1YbC5u"><span>bui～</span></button>
+                        <div v-if="bui01" class="_3Tp4of">
+                            <button @click="_clickBui" type="button" class="_1OyPqC _3Mi9q9 _1YbC5u"><span>bui～</span></button>
                             <button @click="clickCancel" type="button" class="_1OyPqC _2nzlC_"><span>取消</span></button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- 二层 回复层 -->
+
             <div v-if="commentList && commentList.length!==0" >
                 <h3 class="QxT4hD">
                     <div class="_10KzV0">
@@ -35,7 +36,7 @@
                     <!--</div>-->
                 </h3>
 
-                <div class="_2gPNSa" v-for="commentItem in commentList" :key="commentItem.id">
+                <div class="_2gPNSa" v-for="(commentItem,index) in commentList" :key="commentItem.id">
                     <div class="_2IUqvs _3uuww8" id="comment-50817634">
                         <a class="_1OhGeD" href="/u/a203a1fc243f" target="_blank" rel="noopener noreferrer">
                             <img class="_1_jhXc" :src="commentItem.comMemberHead" alt="">
@@ -51,9 +52,10 @@
                             </div>
                             <div class="_2bDGm4">{{commentItem.comContent}}</div>
                             <div class="_2ti5br">
-                                <!--<div class="_3MyyYc">-->
-                                    <!--<span class="_1Jvkh4" role="button" tabindex="-1" aria-label="添加评论">回复</span>-->
-                                <!--</div>-->
+                                <!-- 回复评论 2级 -->
+                                <div class="_3MyyYc">
+                                    <span @click="reCommShowText(index,commentItem.id,null)" class="_1Jvkh4" role="button" tabindex="-1" aria-label="添加评论">回复</span>
+                                </div>
                                 <!--<div class="_1vPqGj">-->
                                     <!--<span class="_1NgfK- _10lQTl _1Jvkh4" role="button" tabindex="-1" aria-label="删除评论">删除</span>-->
                                 <!--</div>-->
@@ -76,12 +78,29 @@
                                     </div>
                                     <div class="_2bDGm4">{{reComment.aitMemberId?'@'+reComment.aitMemberName+'：':''}}{{reComment.reContent}}</div>
                                     <div class="_2ti5br">
-                                        <!--<div class="_3MyyYc">-->
-                                            <!--<span class="_1Jvkh4" role="button" tabindex="-1" aria-label="回复评论"> 回复</span>-->
-                                        <!--</div>-->
+                                        <!-- 回复评论 3级 -->
+                                        <div class="_3MyyYc">
+                                            <span @click="reCommShowText(index,commentItem.id,reComment)" class="_1Jvkh4" role="button" tabindex="-1" aria-label="回复评论"> 回复</span>
+                                        </div>
                                         <!--<div class="_1vPqGj">-->
                                             <!--<span class="_1NgfK- _10lQTl _1Jvkh4" role="button" tabindex="-1" aria-label="删除评论"> 删除</span>-->
                                         <!--</div>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-if="showReCommentIndex===index" class="_3GKFE3">
+                                <span v-if="sayInfoIndex" style="color: black;">@{{aitMemberName}}</span>
+                                <textarea v-on:focus="sayFocusIndex" v-model="memberReSay" class="_1u_H4i" placeholder="说点什么吧..."></textarea>
+
+                                <div class="_3IXP9Q" style="display: flex;">
+                                    <div class="SKZUyR">
+                                        <!--<span>⌘ + Return 发表</span>-->
+                                        <span v-if="sayErrIndex" style="color: red;">随便说点什么吧～</span>
+                                    </div>
+                                    <div class="_3Tp4of">
+                                        <button @click="_clickBuiIndex" type="button" class="_1OyPqC _3Mi9q9 _1YbC5u"><span>bui～</span></button>
+                                        <button @click="clickCancelIndex" type="button" class="_1OyPqC _2nzlC_"><span>取消</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -90,12 +109,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 添加新评论 -->
-            <div class="_1whZvR _2ti5br">
-                <span class="_1Jvkh4" role="button" tabindex="-1" aria-label="添加子评论">添加新评论</span>
-            </div>
-            <div></div>
         </section>
 
     </div>
@@ -107,18 +120,86 @@
         props:['articleId','commentList'],
         data(){
             return{
+                // 留言
                 memberSay:"",
-                sayErr:false
+                sayErr:false,
+                bui01:false,
+                // 回复
+                showReCommentIndex:-1,
+                memberReSay:"",
+                reCommId:null,
+                aitMemberId:null,
+                aitMemberName:"",
+                sayErrIndex:false,
+                sayInfoIndex:false
             }
         },
         methods: {
+            // 点击回复时，展示回复框，并获取数据
+            reCommShowText(index,commentId,reCommend){
+
+                window.console.log(commentId);
+                window.console.log(reCommend);
+
+                this.memberReSay = "";
+                this.sayInfoIndex = false;
+                this.aitMemberId = null;
+                this.reCommId = commentId;
+                if (reCommend){
+                    this.aitMemberId=reCommend.reMemberId;
+                    this.aitMemberName = reCommend.reMemberName;
+                    this.sayInfoIndex = true;
+                }
+                this.showReCommentIndex = index;
+            },
+            // 获取第i个回复框的焦点时
+            sayFocusIndex(){
+                this.sayErrIndex = false;
+            },
+            // 当第i个回复框点击取消时
+            clickCancelIndex(){
+                this.showReCommentIndex = -1;
+            },
             sayFocus(){
                 this.sayErr = false;
+                this.bui01 = true;
             },
             clickCancel(){
-              this.memberSay=""
+              this.memberSay="";
+              this.sayErr = false;
+              this.bui01 = false;
             },
-            clickBui(){
+            // 回复点击bui 时 执行的逻辑
+            _clickBuiIndex(){
+                if(this.$store.state.memberInfo.id===0){
+                    this.$router.push('/login')
+                }else if (this.memberReSay!=="") {
+                    // 执行留言逻辑
+                    let memberInfo = this.$store.state.memberInfo;
+                    let param = {
+                        "articleId":this.articleId,
+                        "memberId": memberInfo.id,
+                        // 父评论id
+                        "parentId": this.reCommId,
+                        // 回复的用户id
+                        "reId": this.aitMemberId,
+                        "commentContent":this.memberReSay
+                    };
+                    articleAddComment(param).then(res =>{
+                        window.console.log(res.date);
+                        if (res.data){
+                            alert("留言成功！");
+                            this.$router.go(0);
+                        }
+                    }).catch(err =>{
+                        alert("留言繁忙，请稍后！");
+                        window.console.log(err);
+                    })
+                }else{
+                    this.sayErrIndex = true;
+                }
+            },
+            _clickBui(){
                 if(this.$store.state.memberInfo.id===0){
                     this.$router.push('/login')
                 }else if (this.memberSay!=="") {
