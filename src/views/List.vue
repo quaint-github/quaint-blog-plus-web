@@ -16,7 +16,7 @@
                     </div>
                     <div class="autor">
                         <span class="lm">
-                            <a v-for="label in item.labels" :key="label" href="/" target="_blank" class="classname">
+                            <a v-for="label in item.labels" :key="label" target="_blank" class="classname">
                                 {{label}}
                             </a>
                         </span>
@@ -28,7 +28,8 @@
                     </div>
                 </li>
 
-                <div class="pagelist"><a title="Total record">&nbsp;<b>45</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_2.html">尾页</a></div>
+                <!-- 分页位置 -->
+                <!--<div class="pagelist"><a title="Total record">&nbsp;<b>45</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_2.html">尾页</a></div>-->
             </div>
             <div class="sidebar">
                 <right-search></right-search>

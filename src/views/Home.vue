@@ -32,19 +32,19 @@
         <article>
             <div class="blogs">
                 <li v-for="item in homeArticle" :key="item.id">
-                    <span class="blogpic"><a href="/"><img :src="item.mainImageUrl"></a></span>
-                    <h3 class="blogtitle"><a href="/">{{item.articleTitle}}</a></h3>
+                    <span class="blogpic"><router-link :to="{path:'/info',query:{id:item.id}}"><img :src="item.mainImageUrl"></router-link></span>
+                    <h3 class="blogtitle"><router-link :to="{path:'/info',query:{id:item.id}}">{{item.articleTitle}}</router-link></h3>
                     <div class="bloginfo">
                         <p>{{item.articleAbstract}}</p>
                     </div>
                     <div class="autor">
                         <span class="lm">
-                            <a v-for="label in item.labels" :key="label" href="/" target="_blank" class="classname">
+                            <a v-for="label in item.labels" :key="label" target="_blank" class="classname">
                                 {{label}}
                             </a>
                         </span>
                         <span class="dtime">{{item.createTime}}</span>
-                        <span class="viewnum">浏览（<a href="/">{{item.readNum}}</a>）</span>
+                        <span class="viewnum">浏览（<a>{{item.readNum}}</a>）</span>
                         <span class="readmore">
                             <router-link :to="{path:'/info',query:{id:item.id}}">阅读原文</router-link>
                         </span>
