@@ -1,7 +1,7 @@
 <template>
     <div>
         <article>
-            <h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="/" class="n1">网站首页</a><a href="/" class="n2">模板分享</a></h1>
+            <h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="/" class="n1">网站首页</a><a class="n2">模板分享</a></h1>
             <div class="picbox">
                 <ul>
                     <li><a href="/"><i><img src="../assets/blog/images/b01.jpg"></i>
@@ -156,17 +156,7 @@
             RightClickRank
         },
         metaInfo: {
-            title: 'Quaint个人博客 - 模版分享',
-            meta: [
-                {
-                    name: 'keywords',
-                    content: 'quaint个人博客,quaintBlog,quaint'
-                },
-                {
-                    name: 'description',
-                    content: '(๑• ₃ •๑)欢迎来到Quaintの博客，(๑> ؂ <๑)这是一个正在成长中的博客，一起成长的还有我的好朋友(> ω <)夏睡醒了秋~'
-                }
-            ]
+            title: 'Quaint个人博客 - 模版分享'
         }
     }
 </script>

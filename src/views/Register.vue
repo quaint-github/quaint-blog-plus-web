@@ -88,7 +88,7 @@
             <!-- 右侧辅助登录 -->
             <div class="rightbox" style="margin-top: 20px">
                 <div class="about" @click="toAbout">
-                    <div class="avatar"> <img src="../assets/blog/images/avatar.jpg" alt=""> </div>
+                    <div class="avatar"> <img src="../assets/blog/images/quaint-head.png" alt=""> </div>
                     <p class="abname">Quaint</p>
                     <p class="abposition">ACG爱好者</p>
                     <div class="abtext"> 放松,听歌,睡觉... </div>
@@ -227,6 +227,9 @@
                 }
             }
 
+        },
+        metaInfo: {
+            title: 'Quaint个人博客 - 注册'
         }
     }
 </script>

@@ -10,7 +10,7 @@ export default new Vuex.Store({
         memberInfo:{
             id:0,
             nickName:'null',
-            headImgUrl:'http://qzapp.qlogo.cn/qzapp/100410602/9C15C6F8B2408C836063FDBBA72B92DC/100'
+            headImgUrl:''
         }
     },
     mutations: {
@@ -26,7 +26,7 @@ export default new Vuex.Store({
             state.memberInfo = {
                 id:0,
                 nickName:'null',
-                headImgUrl:'http://qzapp.qlogo.cn/qzapp/100410602/9C15C6F8B2408C836063FDBBA72B92DC/100'
+                headImgUrl:''
             };
         },
     }

@@ -58,17 +58,7 @@
             RightClickRank
         },
         metaInfo: {
-            title: 'Quaint个人博客 - 学无止境',
-            meta: [
-                {
-                    name: 'keywords',
-                    content: 'quaint个人博客,quaintBlog,quaint'
-                },
-                {
-                    name: 'description',
-                    content: '(๑• ₃ •๑)欢迎来到Quaintの博客，(๑> ؂ <๑)这是一个正在成长中的博客，一起成长的还有我的好朋友(> ω <)夏睡醒了秋~'
-                }
-            ]
+            title: 'Quaint个人博客 - 学无止境'
         },
         data(){
             return{

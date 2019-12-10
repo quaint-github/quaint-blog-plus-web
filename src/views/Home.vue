@@ -2,27 +2,27 @@
     <div>
         <div class="picshow">
             <ul>
-                <li><a href="/"><i><img src="../assets/blog/images/b01.jpg"></i>
+                <li><a><i><img src="../assets/blog/images/b01.jpg"></i>
                     <div class="font">
                         <h3>从你的全世界路过</h3>
                     </div>
                 </a></li>
-                <li><a href="/"><i><img src="../assets/blog/images/b02.jpg"></i>
+                <li><a><i><img src="../assets/blog/images/b02.jpg"></i>
                     <div class="font">
                         <h3>你保护世界，我保护你</h3>
                     </div>
                 </a></li>
-                <li><a href="/"><i><img src="../assets/blog/images/b03.jpg"></i>
+                <li><a><i><img src="../assets/blog/images/b03.jpg"></i>
                     <div class="font">
                         <h3>生命的真谛深邃而美丽</h3>
                     </div>
                 </a></li>
-                <li><a href="/"><i><img src="../assets/blog/images/b04.jpg"></i>
+                <li><a><i><img src="../assets/blog/images/b04.jpg"></i>
                     <div class="font">
                         <h3>每次呼吸，都为下次与你的相逢</h3>
                     </div>
                 </a></li>
-                <li><a href="/"><i><img src="../assets/blog/images/b05.jpg"></i>
+                <li><a><i><img src="../assets/blog/images/b05.jpg"></i>
                     <div class="font">
                         <h3>喜欢你，因为你身上有熟悉的烟火气息</h3>
                     </div>

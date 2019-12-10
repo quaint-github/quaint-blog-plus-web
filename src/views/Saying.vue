@@ -4,7 +4,7 @@
             <h1 class="t_nav">
                 <span>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span>
                 <a href="/" class="n1">网站首页</a>
-                <a href="/" class="n2">留言</a>
+                <a class="n2">留言</a>
             </h1>
 
             <div class="leftbox">
@@ -60,17 +60,7 @@
             }
         },
         metaInfo: {
-            title: 'Quaint个人博客 - 留言',
-            meta: [
-                {
-                    name: 'keywords',
-                    content: 'quaint个人博客,quaintBlog,quaint'
-                },
-                {
-                    name: 'description',
-                    content: '(๑• ₃ •๑)欢迎来到Quaintの博客，(๑> ؂ <๑)这是一个正在成长中的博客，一起成长的还有我的好朋友(> ω <)夏睡醒了秋~'
-                }
-            ]
+            title: 'Quaint个人博客 - 留言'
         }
     }
 </script>

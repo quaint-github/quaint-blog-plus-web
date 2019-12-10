@@ -59,7 +59,7 @@
             <!-- 右侧辅助登录 -->
             <div class="rightbox" style="margin-top: 20px">
                 <div class="about" @click="toAbout">
-                    <div class="avatar"> <img src="../assets/blog/images/avatar.jpg" alt=""> </div>
+                    <div class="avatar"> <img src="../assets/blog/images/quaint-head.png" alt=""> </div>
                     <p class="abname">Quaint</p>
                     <p class="abposition">ACG爱好者</p>
                     <div class="abtext"> 放松,听歌,睡觉... </div>
@@ -93,8 +93,8 @@
                     msg:"密码不能为空"
                 },
                 loginForm: {
-                    username: "quaint",
-                    password: "777123"
+                    username: "",
+                    password: ""
                 }
             }
         },
@@ -136,6 +136,9 @@
                 this.$router.push('/register')
             }
 
+        },
+        metaInfo: {
+            title: 'Quaint个人博客 - 登录'
         }
     }
 </script>

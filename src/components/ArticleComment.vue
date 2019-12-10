@@ -4,8 +4,8 @@
             <!-- 一层 -->
             <div class="_26JdYM">
                 <!-- 用户头像展示位置 -->
-                <img v-if="this.$store.state.memberInfo" class="_3LHFA-" :src="this.$store.state.memberInfo.headImgUrl">
-                <img v-else class="_3LHFA-" src="http://qzapp.qlogo.cn/qzapp/100410602/9C15C6F8B2408C836063FDBBA72B92DC/100" alt="">
+                <img v-if="this.$store.state.memberInfo.id!==0" class="_3LHFA-" :src="this.$store.state.memberInfo.headImgUrl">
+                <img v-else class="_3LHFA-" src="../assets/blog/images/quaint-default-head.jpg" alt="">
                 <div class="_3GKFE3">
                     <textarea v-on:focus="sayFocus" v-model="memberSay" class="_1u_H4i" placeholder="说点什么吧..."></textarea>
 
@@ -38,7 +38,7 @@
 
                 <div class="_2gPNSa" v-for="(commentItem,index) in commentList" :key="commentItem.id">
                     <div class="_2IUqvs _3uuww8" id="comment-50817634">
-                        <a class="_1OhGeD" href="/u/a203a1fc243f" target="_blank" rel="noopener noreferrer">
+                        <a class="_1OhGeD" target="_blank" rel="noopener noreferrer">
                             <img class="_1_jhXc" :src="commentItem.comMemberHead" alt="">
                         </a>
                         <div class="_1K9gkf">
