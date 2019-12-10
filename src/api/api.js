@@ -1,10 +1,10 @@
 import axios from "axios"
 
 
-// const dev = 'http://localhost:8081/quaint-service/';
-const prod = 'https://quaint-aini.com/quaint-service/';
+const dev = 'http://localhost:8081/quaint-service';
+// const prod = 'https://quaint-aini.com/quaint-service';
 
-const webPrefix = prod;
+const webPrefix = dev;
 
 
 const axiosInstance = axios.create({

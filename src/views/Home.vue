@@ -39,9 +39,9 @@
                     </div>
                     <div class="autor">
                         <span class="lm">
-                            <a v-for="label in item.labels" :key="label" target="_blank" class="classname">
-                                {{label}}
-                            </a>
+                            <router-link v-for="label in item.labels" :key="label.id" :to="{path:'/list',query:{'labelId':label.id}}" class="classname">
+                                {{label.labelName}}
+                            </router-link>
                         </span>
                         <span class="dtime">{{item.createTime}}</span>
                         <span class="viewnum">浏览（<a>{{item.readNum}}</a>）</span>

@@ -14,7 +14,7 @@
                         <span class="au02">{{articleInfo.createTime}}</span><span class="au03">共<b>
                         {{articleInfo.readNum}}</b>人围观</span></div>
                     <div class="tags">
-                        <router-link to="/" v-for="label in articleInfo.labels" :key="label">{{label}}</router-link>
+                        <router-link :to="{path:'/list',query:{'labelId':label.id}}" v-for="label in articleInfo.labels" :key="label.id">{{label.labelName}}</router-link>
                     </div>
                     <div class="news_about">
                         <strong>简介</strong>
@@ -98,7 +98,7 @@
                 let vueThis = this;
                 // 获取文章信息
                 getArticleInfo(this.$route.query).then( res => {
-                    // window.console.log(JSON.stringify(response.data));
+                    // window.console.log(JSON.stringify(res.data.labels));
                     if(res.data){
                         vueThis.articleInfo = res.data;
                     }

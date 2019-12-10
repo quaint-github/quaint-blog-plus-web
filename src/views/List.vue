@@ -16,8 +16,8 @@
                     </div>
                     <div class="autor">
                         <span class="lm">
-                            <a v-for="label in item.labels" :key="label" target="_blank" class="classname">
-                                {{label}}
+                            <a @click="_getArticleByLabelId({labelId:label.id})" v-for="label in item.labels" :key="label.id" target="_blank" class="classname">
+                                {{label.labelName}}
                             </a>
                         </span>
                         <span class="dtime">{{item.createTime}}</span>
@@ -96,7 +96,7 @@
                 let vueThis = this;
                 getSearchArticle(json)
                     .then(function (response) {
-                        // window.console.log(response)
+                        window.console.log(response)
                         if(response.data!==""){
                             vueThis.articleList = response.data;
                         }
