@@ -78,6 +78,7 @@
     import {checkLogin} from '../api/api'
     export default {
         name: "Login",
+        inject:['reload'],
         components: {
             RightColumnNav,
             RightSearch
@@ -93,8 +94,8 @@
                     msg:"密码不能为空"
                 },
                 loginForm: {
-                    username: "",
-                    password: ""
+                    username: "quaint",
+                    password: "777123"
                 }
             }
         },
@@ -108,8 +109,9 @@
                 checkLogin({username: username, password:password}).then(res => {
                         // window.console.log(res.data);
                         if(res.data){
-                            vueThis.$store.commit('auth_success',{"token":"token","memberInfo":res.data});
-                            vueThis.$router.push('/');
+                            vueThis.$store.commit('auth_success',{"accessToken":res.data.accessToken});
+                            vueThis.$router.go(-1);
+                            vueThis.reload();
                             vueThis.showPassErr = {
                                 show: false,
                                 msg: ''

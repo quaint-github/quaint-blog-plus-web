@@ -10,10 +10,12 @@
                         <!--<li><router-link to="/share">模板分享</router-link></li>-->
                         <li><router-link to="/list">学无止境</router-link></li>
                         <li><router-link to="/saying">留言</router-link></li>
-                        <li style="padding: 0;" v-if="this.$store.state.memberInfo.id!==0"><a style="float: right; margin: 0 10px;" @click="exit">退出</a></li>
-                        <li v-if="this.$store.state.memberInfo.id!==0">
-                            {{this.$store.state.memberInfo.nickName}}
-                            <img style="float: right" class="_3LHFA-" :src="this.$store.state.memberInfo.headImgUrl"/>
+                        <li style="padding: 0;" v-if="memberInfo.nickName">
+                            <a style="float: right; margin: 0 10px;" @click="exit">退出</a>
+                        </li>
+                        <li v-if="memberInfo.nickName">
+                            {{memberInfo.nickName}}
+                            <img style="float: right" class="_3LHFA-" :src="memberInfo.headImgUrl"/>
                         </li>
                         <li v-else><router-link to="/login">登录</router-link></li>
                     </ul>
@@ -24,11 +26,34 @@
 </template>
 
 <script>
+    import {getMemberInfo} from '../api/api'
     export default {
         name: "BlogHead",
+        data(){
+            return{
+                memberInfo:{
+                    nickName:null,
+                    headImgUrl:null
+                }
+            }
+        },
+        created:function () {
+            this._getMemberInfo()
+        },
         methods:{
             exit(){
-                this.$store.commit("auth_logout",{})
+                this.memberInfo=null;
+                this.$store.commit("auth_logout",{});
+                this.$router.go(0);
+            },
+            _getMemberInfo(){
+                let vueThis = this;
+                getMemberInfo({'accessToken':this.$store.state.accessToken}).then(res => {
+                    // window.console.log(res);
+                    vueThis.memberInfo = res.data;
+                }).catch(err => {
+                    window.console.log(err)
+                })
             }
         }
     }

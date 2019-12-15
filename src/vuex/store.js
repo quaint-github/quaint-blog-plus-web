@@ -6,28 +6,19 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state:{
         status: '',
-        token: localStorage.getItem('token') || '',
-        memberInfo:{
-            id:0,
-            nickName:'null',
-            headImgUrl:''
-        }
+        accessToken: localStorage.getItem('accessToken') || ''
     },
     mutations: {
         auth_success(state, data) {
             // window.console.info("nickName:"+data.nickName);
-            state.status = 'success';
-            state.token = data.token;
-            state.memberInfo = data.memberInfo;
+            state.status = 'login';
+            state.accessToken = data.accessToken;
+            localStorage.setItem("accessToken",data.accessToken);
         },
         auth_logout(state) {
-            state.status = '';
-            state.token = '';
-            state.memberInfo = {
-                id:0,
-                nickName:'null',
-                headImgUrl:''
-            };
+            state.status = 'logout';
+            state.accessToken = '';
+            localStorage.removeItem("accessToken")
         },
     }
 

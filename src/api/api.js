@@ -1,14 +1,17 @@
 import axios from "axios"
 
 
-// const dev = 'http://localhost:8081/quaint-service';
-const prod = 'https://quaint-aini.com/quaint-service';
+const dev = 'http://localhost:8081/quaint-service';
+// const prod = 'https://quaint-aini.com/quaint-service';
 
-const webPrefix = prod;
+const webPrefix = dev;
 
 
 const axiosInstance = axios.create({
-    headers: {'Content-Type': 'application/json;charset=utf-8'},// 设置传输内容的类型和编码
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'accessToken': localStorage.getItem('accessToken')
+    },// 设置传输内容的类型和编码
     withCredentials: true // 指定某个请求应该发送凭据。允许客户端携带跨域cookie，也需要此配置
 });
 
@@ -103,7 +106,18 @@ export const articleAddComment = (params) => {
         data: params
     })
 };
-
+// 用户评论
+export const getMemberInfo = (params) => {
+    return axiosInstance({
+        url: webPrefix + "/member/info",
+        method: "post",
+        data: params,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'accessToken': params.accessToken
+        }
+    })
+};
 
 
 

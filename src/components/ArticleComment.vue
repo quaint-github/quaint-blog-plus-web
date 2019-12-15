@@ -4,7 +4,7 @@
             <!-- 一层 -->
             <div class="_26JdYM">
                 <!-- 用户头像展示位置 -->
-                <img v-if="this.$store.state.memberInfo.id!==0" class="_3LHFA-" :src="this.$store.state.memberInfo.headImgUrl">
+                <img v-if="memberInfo.headImgUrl" class="_3LHFA-" :src="memberInfo.headImgUrl">
                 <img v-else class="_3LHFA-" src="../assets/blog/images/quaint-default-head.jpg" alt="">
                 <div class="_3GKFE3">
                     <textarea v-on:focus="sayFocus" v-model="memberSay" class="_1u_H4i" placeholder="说点什么吧..."></textarea>
@@ -115,11 +115,17 @@
 </template>
 <script>
     import {articleAddComment} from '../api/api'
+    import {getMemberInfo} from '../api/api'
     export default {
         name: "ArticleComment",
         props:['articleId','commentList'],
         data(){
             return{
+                // 用户信息
+                memberInfo:{
+                    nickName:null,
+                    headImgUrl:null
+                },
                 // 留言
                 memberSay:"",
                 sayErr:false,
@@ -134,12 +140,15 @@
                 sayInfoIndex:false
             }
         },
+        created:function(){
+          this._getMemberInfo();
+        },
         methods: {
             // 点击回复时，展示回复框，并获取数据
             reCommShowText(index,commentId,reCommend){
 
-                window.console.log(commentId);
-                window.console.log(reCommend);
+                // window.console.log(commentId);
+                // window.console.log(reCommend);
 
                 this.memberReSay = "";
                 this.sayInfoIndex = false;
@@ -171,14 +180,12 @@
             },
             // 回复点击bui 时 执行的逻辑
             _clickBuiIndex(){
-                if(this.$store.state.memberInfo.id===0){
+                if(this.memberInfo.nickName===undefined){
                     this.$router.push('/login')
                 }else if (this.memberReSay!=="") {
                     // 执行留言逻辑
-                    let memberInfo = this.$store.state.memberInfo;
                     let param = {
                         "articleId":this.articleId,
-                        "memberId": memberInfo.id,
                         // 父评论id
                         "parentId": this.reCommId,
                         // 回复的用户id
@@ -186,7 +193,6 @@
                         "commentContent":this.memberReSay
                     };
                     articleAddComment(param).then(res =>{
-                        window.console.log(res.date);
                         if (res.data){
                             alert("留言成功！");
                             this.$router.go(0);
@@ -200,14 +206,12 @@
                 }
             },
             _clickBui(){
-                if(this.$store.state.memberInfo.id===0){
-                    this.$router.push('/login')
+                if(this.memberInfo.nickName===undefined){
+                    this.$router.push({path:'/login'})
                 }else if (this.memberSay!=="") {
                     // 执行留言逻辑
-                    let memberInfo = this.$store.state.memberInfo;
                     let param = {
                         "articleId":this.articleId,
-                        "memberId": memberInfo.id,
                         // 父评论id
                         "parentId": null,
                         // 回复的用户id
@@ -215,7 +219,6 @@
                         "commentContent":this.memberSay
                     };
                     articleAddComment(param).then(res =>{
-                        window.console.log(res.date);
                         if (res.data){
                             alert("留言成功！");
                             this.$router.go(0);
@@ -227,6 +230,15 @@
                 }else{
                     this.sayErr = true;
                 }
+            },
+            _getMemberInfo(){
+                let vueThis = this;
+                getMemberInfo({'accessToken':this.$store.state.accessToken}).then(res => {
+                    // window.console.log(res)
+                    vueThis.memberInfo = res.data;
+                }).catch(err => {
+                    window.console.log(err)
+                })
             }
         }
     }
