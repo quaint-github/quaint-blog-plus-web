@@ -37,7 +37,7 @@
                                         <div class="input-label"><span style="color: red">* </span>密码</div>
                                         <div class="input-container">
                                             <label>
-                                                <input type="password" v-model="loginForm.password"/>
+                                                <input type="password" @keydown.enter="_loginIn" v-model="loginForm.password"/>
                                             </label>
                                         </div>
                                         <p class="error-text" v-if="showPassErr.show">
@@ -94,8 +94,8 @@
                     msg:"密码不能为空"
                 },
                 loginForm: {
-                    username: "quaint",
-                    password: "777123"
+                    username: "",
+                    password: ""
                 }
             }
         },
