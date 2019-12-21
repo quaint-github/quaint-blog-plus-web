@@ -8,6 +8,7 @@
                         <li><router-link to="/">网站首页</router-link></li>
                         <li><router-link to="/about">关于我</router-link></li>
                         <!--<li><router-link to="/share">模板分享</router-link></li>-->
+                        <li><a href="http://quaint-aini.com:7777/" target="_blank">湛蓝回忆</a></li>
                         <li><router-link to="/list">学无止境</router-link></li>
                         <li><router-link to="/saying">留言</router-link></li>
                         <li style="padding: 0;" v-if="memberInfo.nickName">
