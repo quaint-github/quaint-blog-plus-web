@@ -8,22 +8,22 @@
             <div class="blogs">
                 <div class="mt20"></div>
 
-                <li v-for="item in articleList" :key="item.id">
-                    <span class="blogpic"><router-link :to="{path:'/info',query:{id:item.id}}"><img :src="item.mainImageUrl"></router-link></span>
-                    <h3 class="blogtitle"><router-link :to="{path:'/info',query:{id:item.id}}">{{item.articleTitle}}</router-link></h3>
+                <li @click="skipToInfo(item.id)" v-for="item in articleList" :key="item.id">
+                    <span class="blogpic"><img :src="item.mainImageUrl"></span>
+                    <h3 class="blogtitle">{{item.articleTitle}}</h3>
                     <div class="bloginfo">
                         <p>{{item.articleAbstract}}</p>
                     </div>
                     <div class="autor">
                         <span class="lm">
-                            <a @click="_getArticleByLabelId({labelId:label.id})" v-for="label in item.labels" :key="label.id" target="_blank" class="classname">
+                            <a @click.stop="_getArticleByLabelId({labelId:label.id})" v-for="label in item.labels" :key="label.id" target="_blank" class="classname">
                                 {{label.labelName}}
                             </a>
                         </span>
                         <span class="dtime">{{item.createTime}}</span>
-                        <span class="viewnum">浏览（<a>{{item.readNum}}</a>）</span>
+                        <span class="viewnum">浏览（{{item.readNum}}）</span>
                         <span class="readmore">
-                            <router-link :to="{path:'/info',query:{id:item.id}}">阅读原文</router-link>
+                            <a>阅读原文</a>
                         </span>
                     </div>
                 </li>
@@ -78,6 +78,10 @@
             }
         },
         methods: {
+            // 点击文章面板时
+            skipToInfo(id){
+                this.$router.push({path:'/info',query:{id:id}})
+            },
             // 获取首页展示的文章列表
             _getArticleList() {
                 let vueThis = this;

@@ -31,22 +31,23 @@
         </div>
         <article>
             <div class="blogs">
-                <li v-for="item in homeArticle" :key="item.id">
-                    <span class="blogpic"><router-link :to="{path:'/info',query:{id:item.id}}"><img :src="item.mainImageUrl"></router-link></span>
-                    <h3 class="blogtitle"><router-link :to="{path:'/info',query:{id:item.id}}">{{item.articleTitle}}</router-link></h3>
+                <li @click="skipToInfo(item.id)" v-for="item in homeArticle" :key="item.id">
+                    <span class="blogpic"><img :src="item.mainImageUrl"></span>
+                    <h3 class="blogtitle">{{item.articleTitle}}</h3>
                     <div class="bloginfo">
                         <p>{{item.articleAbstract}}</p>
                     </div>
+
                     <div class="autor">
                         <span class="lm">
-                            <router-link v-for="label in item.labels" :key="label.id" :to="{path:'/list',query:{'labelId':label.id}}" class="classname">
+                            <a @click.stop="clickLabel(label.id)" v-for="label in item.labels" :key="label.id" class="classname">
                                 {{label.labelName}}
-                            </router-link>
+                            </a>
                         </span>
                         <span class="dtime">{{item.createTime}}</span>
-                        <span class="viewnum">浏览（<a>{{item.readNum}}</a>）</span>
+                        <span class="viewnum">浏览（{{item.readNum}}）</span>
                         <span class="readmore">
-                            <router-link :to="{path:'/info',query:{id:item.id}}">阅读原文</router-link>
+                            <a>阅读原文</a>
                         </span>
                     </div>
                 </li>
@@ -122,6 +123,14 @@
                     .catch(function (error) {
                         window.console.log(error);
                     });
+            },
+            // 点击文章面板时
+            skipToInfo(id){
+                this.$router.push({path:'/info',query:{id:id}})
+            },
+            // 点击首页标签时
+            clickLabel(id){
+                this.$router.push({path:'/list',query:{'labelId':id}});
             },
             toAbout(){
                 this.$router.push('/about')

@@ -12,7 +12,7 @@
                     <div class="_3IXP9Q" style="display: flex;">
                         <div class="SKZUyR">
                             <!--<span>⌘ + Return 发表</span>-->
-                            <span v-if="sayErr" style="color: red;">随便说点什么吧～</span>
+                            <!--<span v-if="sayErr" style="color: red;">随便说点什么吧～</span>-->
                         </div>
                         <div v-if="bui01" class="_3Tp4of">
                             <button @click="_clickBui" type="button" class="_1OyPqC _3Mi9q9 _1YbC5u"><span>bui～</span></button>
@@ -96,7 +96,7 @@
                                 <div class="_3IXP9Q" style="display: flex;">
                                     <div class="SKZUyR">
                                         <!--<span>⌘ + Return 发表</span>-->
-                                        <span v-if="sayErrIndex" style="color: red;">随便说点什么吧～</span>
+                                        <!--<span v-if="sayErrIndex" style="color: red;">随便说点什么吧～</span>-->
                                     </div>
                                     <div class="_3Tp4of">
                                         <button @click="_clickBuiIndex" type="button" class="_1OyPqC _3Mi9q9 _1YbC5u"><span>bui～</span></button>
@@ -118,6 +118,7 @@
     import {getMemberInfo} from '../api/api'
     export default {
         name: "ArticleComment",
+        inject:['reload'],
         props:['articleId','commentList'],
         data(){
             return{
@@ -128,7 +129,6 @@
                 },
                 // 留言
                 memberSay:"",
-                sayErr:false,
                 bui01:false,
                 // 回复
                 showReCommentIndex:-1,
@@ -136,7 +136,6 @@
                 reCommId:null,
                 aitMemberId:null,
                 aitMemberName:"",
-                sayErrIndex:false,
                 sayInfoIndex:false
             }
         },
@@ -170,12 +169,10 @@
                 this.showReCommentIndex = -1;
             },
             sayFocus(){
-                this.sayErr = false;
                 this.bui01 = true;
             },
             clickCancel(){
               this.memberSay="";
-              this.sayErr = false;
               this.bui01 = false;
             },
             // 回复点击bui 时 执行的逻辑
@@ -193,17 +190,30 @@
                         "commentContent":this.memberReSay,
                         'accessToken':this.$store.state.accessToken
                     };
+                    let self = this;
                     articleAddComment(param).then(res =>{
                         if (res.data){
-                            alert("留言成功！");
-                            this.$router.go(0);
+                            self.$message({
+                                showClose: true,
+                                message: 'message bui is success！',
+                                type: 'success'
+                            });
+                            this.reload();
                         }
                     }).catch(err =>{
-                        alert("留言繁忙，请稍后！");
+                        self.$message({
+                            showClose: true,
+                            message: '留言繁忙，请稍后！',
+                            type: 'error'
+                        });
                         window.console.log(err);
                     })
                 }else{
-                    this.sayErrIndex = true;
+                    this.$message({
+                        showClose: true,
+                        message: '随便说点什么吧~',
+                        type: 'warning'
+                    });
                 }
             },
             _clickBui(){
@@ -220,24 +230,37 @@
                         "commentContent":this.memberSay,
                         'accessToken':this.$store.state.accessToken
                     };
+                    let self = this;
                     articleAddComment(param).then(res =>{
                         if (res.data){
-                            alert("留言成功！");
-                            this.$router.go(0);
+                            self.$message({
+                                showClose: true,
+                                message: 'message bui is success！',
+                                type: 'success'
+                            });
+                            this.reload();
                         }
                     }).catch(err =>{
-                        alert("留言繁忙，请稍后！");
+                        self.$message({
+                            showClose: true,
+                            message: '留言繁忙，请稍后！',
+                            type: 'error'
+                        });
                         window.console.log(err);
                     })
                 }else{
-                    this.sayErr = true;
+                    this.$message({
+                        showClose: true,
+                        message: '随便说点什么吧~',
+                        type: 'warning'
+                    });
                 }
             },
             _getMemberInfo(){
-                let vueThis = this;
+                let self = this;
                 getMemberInfo({'accessToken':this.$store.state.accessToken}).then(res => {
                     // window.console.log(res)
-                    vueThis.memberInfo = res.data;
+                    self.memberInfo = res.data;
                 }).catch(err => {
                     window.console.log(err)
                 })

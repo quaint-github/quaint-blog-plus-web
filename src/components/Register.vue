@@ -158,6 +158,12 @@
                         window.console.log(res);
                         vueThis.$store.commit('auth_success',{"accessToken":res.data.accessToken});
                         vueThis.$router.go(-1);
+                        self.$message({
+                            // dangerouslyUseHTMLString: true,
+                            showClose: true,
+                            message: 'register success！',
+                            type: 'success'
+                        });
                         vueThis.reload();
                     }).catch(err => {
                         vueThis.registerTip = {

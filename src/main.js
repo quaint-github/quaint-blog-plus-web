@@ -3,8 +3,13 @@ import App from './App.vue'
 import Router from './router/index'
 import store from './vuex/store' // 引入store
 import MetaInfo from 'vue-meta-info' // 引入meta
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
 
 Vue.use(MetaInfo);
+Vue.use(ElementUI);
+
 Vue.config.productionTip = false;
 
 new Vue({

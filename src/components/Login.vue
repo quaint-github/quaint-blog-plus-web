@@ -111,6 +111,12 @@
                         if(res.data){
                             vueThis.$store.commit('auth_success',{"accessToken":res.data.accessToken});
                             vueThis.$router.go(-1);
+                            self.$message({
+                                // dangerouslyUseHTMLString: true,
+                                showClose: true,
+                                message: 'login success！',
+                                type: 'success'
+                            });
                             vueThis.reload();
                             vueThis.showPassErr = {
                                 show: false,
