@@ -21,30 +21,22 @@
                                         <i class="tab-active-line transition" style="width: 50%; left: 0%;"></i></div>
                                 </div>
                                 <form class="quaint-login-margin-top-from">
-                                    <div class="mhy-form-input input-item">
-                                        <div class="input-label"><span style="color: red">* </span>用户名</div>
-                                        <div class="input-container">
-                                            <label>
-                                                <input type="text" v-model="loginForm.username"/>
-                                            </label>
+                                    <label for="inputName">
+                                        <div class="mhy-form-input input-item" >
+                                            <div class="input-label"><span style="color: red">* </span>用户名</div>
+                                            <div class="input-container" >
+                                                <input ref="inputName" id="inputName" type="text" v-model="loginForm.username"/>
+                                            </div>
                                         </div>
-                                        <p class="error-text" v-if="showNameErr.show">
-                                            <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{showNameErr.msg}}
-                                        </p>
-                                    </div>
-                                    <div class="mhy-form-input input-item input-error">
-                                        <div class="input-label"><span style="color: red">* </span>密码</div>
-                                        <div class="input-container">
-                                            <label>
-                                                <input type="password" @keydown.enter="_loginIn" v-model="loginForm.password"/>
-                                            </label>
+                                    </label>
+                                    <label for="inputPwd">
+                                        <div class="mhy-form-input input-item input-error">
+                                            <div class="input-label"><span style="color: red">* </span>密码</div>
+                                            <div class="input-container">
+                                                <input ref="inputPwd" id="inputPwd" type="password" @keydown.enter="_loginIn" v-model="loginForm.password"/>
+                                            </div>
                                         </div>
-                                        <p class="error-text" v-if="showPassErr.show">
-                                            <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{showPassErr.msg}}
-                                        </p>
-                                    </div>
+                                    </label>
                                     <div class="mhy-button login-btn is-block">
                                         <button type="button" @click="_loginIn">
                                             登 录
@@ -85,14 +77,6 @@
         },
         data(){
             return{
-                showNameErr:{
-                    show:false,
-                    msg:"用户名不能为空"
-                },
-                showPassErr:{
-                    show:false,
-                    msg:"密码不能为空"
-                },
                 loginForm: {
                     username: "",
                     password: ""
@@ -104,6 +88,17 @@
                 let username = this.loginForm.username;
                 let password = this.loginForm.password;
 
+                if (username === ""){
+                    this.$message.warning("用户名不能为空!");
+                    this.$refs.inputName.focus();
+                    return
+                }
+                if (password === ""){
+                    this.$message.warning("密码不能为空!");
+                    this.$refs.inputPwd.focus();
+                    return
+                }
+
                 let self = this;
 
                 checkLogin({username: username, password:password}).then(res => {
@@ -111,27 +106,13 @@
                         if(res.data){
                             self.$store.commit('auth_success',{"accessToken":res.data.accessToken});
                             self.$router.go(-1);
-                            self.$message({
-                                showClose: true,
-                                message: 'login success！',
-                                type: 'success'
-                            });
+                            self.$message.success('login success！');
                             self.reload();
-                            self.showPassErr = {
-                                show: false,
-                                msg: ''
-                            };
                         }else {
-                            self.showPassErr = {
-                                show: true,
-                                msg: '账号密码不匹配，请检查后重试！'
-                            };
+                            self.$message.warning("账号密码不匹配，请检查后重试！");
                         }
                     }).catch(err => {
-                        self.showPassErr = {
-                            show: true,
-                            msg: '服务器繁忙，请稍后重试！'
-                        };
+                        self.$message.error("服务器繁忙，请稍后重试！");
                         window.console.log(err);
                     });
 

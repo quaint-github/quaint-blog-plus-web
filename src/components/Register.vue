@@ -7,7 +7,7 @@
                 <a href="/" class="n1">网站首页</a>
                 <a class="n2">注册</a>
             </h1>
-            <!-- 左侧登录 -->
+            <!-- 左侧注册 -->
             <div class="leftbox">
                 <div id="root">
                     <div class="mhy-verify-body-container">
@@ -22,58 +22,39 @@
                                     </div>
                                 </div>
                                 <form class="quaint-login-margin-top-from">
-                                    <div class="mhy-form-input input-item">
-                                        <div class="input-label"><span style="color: red">* </span>用户名</div>
-                                        <div class="input-container">
-                                            <label>
-                                                <input v-on:focus="usernameFocus" v-on:blur="usernameBlur" v-model="username.val" type="text"/>
-                                            </label> <!---->
+
+                                    <label for="username">
+                                        <div class="mhy-form-input input-item">
+                                            <div class="input-label"><span style="color: red">* </span>用户名</div>
+                                            <div class="input-container">
+                                                <input ref="username" id="username" v-model="username" type="text"/>
+                                            </div>
                                         </div>
-                                        <p class="error-text" v-if="username.showErr">
-                                            <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{username.msg}}
-                                        </p>
-                                    </div>
-                                    <div class="mhy-form-input input-item">
-                                        <div class="input-label"><span style="color: red">* </span>昵称</div>
-                                        <div class="input-container">
-                                            <label>
-                                                <input v-on:focus="nickFocus" v-on:blur="nickBlur"  v-model="nickName.val" type="text"/>
-                                            </label> <!---->
+                                    </label>
+                                    <label for="nickName">
+                                        <div class="mhy-form-input input-item">
+                                            <div class="input-label"><span style="color: red">* </span>昵称</div>
+                                            <div class="input-container">
+                                                <input ref="nickName" id="nickName" v-model="nickName" type="text"/>
+                                            </div>
                                         </div>
-                                        <p class="error-text" v-if="nickName.showErr">
-                                            <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{nickName.msg}}
-                                        </p>
-                                    </div>
-                                    <div class="mhy-form-input input-item input-error">
-                                        <div class="input-label"><span style="color: red">* </span>密码</div>
-                                        <div class="input-container">
-                                            <label>
-                                                <input v-on:focus="pwdFocus" v-on:blur="pwdBlur" v-model="pwd.val" type="password"/>
-                                            </label>
+                                    </label>
+                                    <label for="pwd">
+                                        <div class="mhy-form-input input-item input-error">
+                                            <div class="input-label"><span style="color: red">* </span>密码</div>
+                                            <div class="input-container">
+                                                <input ref="pwd" id="pwd" v-model="pwd" type="password"/>
+                                            </div>
                                         </div>
-                                        <p class="error-text" v-if="pwd.showErr">
-                                            <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{pwd.msg}}
-                                        </p> <!---->
-                                    </div>
-                                    <div class="mhy-form-input input-item input-error">
-                                        <div class="input-label"><span style="color: red">* </span>确认密码</div>
-                                        <div class="input-container">
-                                            <label>
-                                                <input v-on:focus="rePwdFocus" v-on:blur="rePwdBlur" v-model="rePwd.val" type="password"/>
-                                            </label>
+                                    </label>
+                                    <label for="rePwd">
+                                        <div class="mhy-form-input input-item input-error">
+                                            <div class="input-label"><span style="color: red">* </span>确认密码</div>
+                                            <div class="input-container">
+                                                <input ref="rePwd" id="rePwd" v-model="rePwd" type="password"/>
+                                            </div>
                                         </div>
-                                        <p class="error-text" v-if="rePwd.showErr">
-                                            <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{rePwd.msg}}
-                                        </p>
-                                        <p class="error-text" v-if="registerTip.showErr">
-                                            <i class="anticon mhy-icon icon-closecircle"></i>
-                                            {{registerTip.msg}}
-                                        </p>
-                                    </div>
+                                    </label>
                                     <div class="mhy-button login-btn is-block">
                                         <button @click="_registerIn" type="button" class="">
                                             注 册
@@ -114,65 +95,53 @@
         },
         data(){
             return{
-                username:{
-                    val:"",
-                    showErr:false,
-                    msg:"用户名不能为空"
-                },
-                nickName:{
-                    val:"",
-                    showErr:false,
-                    msg:"昵称不能为空"
-                },
-                pwd:{
-                    val:"",
-                    showErr:false,
-                    msg:"密码不能为空"
-                },
-                rePwd:{
-                    val:"",
-                    showErr:false,
-                    msg:"校验密码不能为空"
-                },
-                registerTip:{
-                    showErr:false,
-                    msg:"请按照要求完成注册～"
-                }
+                username:"",
+                nickName:"",
+                pwd:"",
+                rePwd:""
             }
         },
         methods: {
             _registerIn(){
-                if(this.username.showErr || this.nickName.showErr || this.pwd.showErr || this.rePwd.showErr){
-                    this.registerTip.showErr = true;
-                }else{
-                    this.registerTip.showErr = false;
-                    // 封装数据
-                    let param = {
-                        "username":this.username.val,
-                        "nickName":this.nickName.val,
-                        "pwd":this.pwd.val,
-                        "rePwd":this.rePwd.val
-                    };
-                    let self = this;
-                    registerMember(param).then(res =>{
-                        window.console.log(res);
-                        self.$store.commit('auth_success',{"accessToken":res.data.accessToken});
-                        self.$router.go(-1);
-                        self.$message({
-                            // dangerouslyUseHTMLString: true,
-                            showClose: true,
-                            message: 'register success！',
-                            type: 'success'
-                        });
-                        self.reload();
-                    }).catch(err => {
-                        self.registerTip = {
-                            showErr: true,
-                            msg: '服务器繁忙，请稍后重试！'
-                        };
-                        window.console.log(err);
-                    });
+                if (this.username === ""){
+                    this.$message.warning("用户名不能为空!");
+                    this.$refs.username.focus(); return
                 }
+                if (this.nickName === ""){
+                    this.$message.warning("昵称不能为空!");
+                    this.$refs.nickName.focus(); return
+                }
+                if (this.pwd === ""){
+                    this.$message.warning("密码不能为空!");
+                    this.$refs.pwd.focus(); return
+                }
+                if (this.rePwd === ""){
+                    this.$message.warning("校验密码不能为空!");
+                    this.$refs.rePwd.focus(); return
+                }
+                if (this.pwd !== this.rePwd){
+                    this.$message.warning("两次密码不一致!");
+                    this.$refs.rePwd.focus(); return
+                }
+
+                // 封装数据
+                let param = {
+                    "username":this.username,
+                    "nickName":this.nickName,
+                    "pwd":this.pwd,
+                    "rePwd":this.rePwd
+                };
+                let self = this;
+                registerMember(param).then(res =>{
+                    window.console.log(res);
+                    self.$store.commit('auth_success',{"accessToken":res.data.accessToken});
+                    self.$router.go(-1);
+                    self.$message.success('register success！');
+                    self.reload();
+                }).catch(err => {
+                    self.$message.error("服务器繁忙，请稍后重试！");
+                    window.console.log(err);
+                });
 
             },
             toAbout(){
@@ -181,59 +150,6 @@
             toLogin(){
                 this.$emit('to-register',true)
             },
-            // 校验用户名非空
-            usernameFocus(){
-                this.username.showErr = false;
-                this.registerTip.showErr = false;
-            },
-            usernameBlur(){
-                // window.console.log(JSON.stringify(this.username))
-                if (this.username.val===""){
-                    this.username.showErr = true
-                }
-            },
-            // 校验昵称非空
-            nickFocus(){
-                this.nickName.showErr = false;
-                this.registerTip.showErr = false;
-            },
-            nickBlur(){
-                // window.console.log(JSON.stringify(this.username))
-                if (this.nickName.val===""){
-                    this.nickName.showErr = true
-                }
-            },
-            // 校验密码非空
-            pwdFocus(){
-                this.pwd.showErr = false;
-                this.registerTip.showErr = false;
-            },
-            pwdBlur(){
-                window.console.log(JSON.stringify(this.pwd))
-                if (this.pwd.val===""){
-                    this.pwd.showErr = true
-                }
-                if (this.rePwd.val === this.pwd.val){
-                    this.rePwd.showErr = false;
-                }
-            },
-            // 校验重复密码是否非空
-            rePwdFocus(){
-                this.rePwd.showErr = false;
-                this.registerTip.showErr = false;
-            },
-            rePwdBlur(){
-                // window.console.log(JSON.stringify(this.username))
-                if (this.rePwd.val===""){
-                    this.rePwd.showErr = true;
-                    this.rePwd.msg = "校验密码不能为空";
-                    return;
-                }
-                if (this.rePwd.val !== this.pwd.val){
-                    this.rePwd.showErr = true;
-                    this.rePwd.msg = "两次密码必须相同";
-                }
-            }
 
         },
         metaInfo: {
