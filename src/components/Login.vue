@@ -104,32 +104,31 @@
                 let username = this.loginForm.username;
                 let password = this.loginForm.password;
 
-                let vueThis = this;
+                let self = this;
 
                 checkLogin({username: username, password:password}).then(res => {
                         // window.console.log(res.data);
                         if(res.data){
-                            vueThis.$store.commit('auth_success',{"accessToken":res.data.accessToken});
-                            vueThis.$router.go(-1);
+                            self.$store.commit('auth_success',{"accessToken":res.data.accessToken});
+                            self.$router.go(-1);
                             self.$message({
-                                // dangerouslyUseHTMLString: true,
                                 showClose: true,
                                 message: 'login success！',
                                 type: 'success'
                             });
-                            vueThis.reload();
-                            vueThis.showPassErr = {
+                            self.reload();
+                            self.showPassErr = {
                                 show: false,
                                 msg: ''
                             };
                         }else {
-                            vueThis.showPassErr = {
+                            self.showPassErr = {
                                 show: true,
                                 msg: '账号密码不匹配，请检查后重试！'
                             };
                         }
                     }).catch(err => {
-                        vueThis.showPassErr = {
+                        self.showPassErr = {
                             show: true,
                             msg: '服务器繁忙，请稍后重试！'
                         };

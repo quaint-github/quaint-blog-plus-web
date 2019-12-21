@@ -153,20 +153,20 @@
                         "pwd":this.pwd.val,
                         "rePwd":this.rePwd.val
                     };
-                    let vueThis = this;
+                    let self = this;
                     registerMember(param).then(res =>{
                         window.console.log(res);
-                        vueThis.$store.commit('auth_success',{"accessToken":res.data.accessToken});
-                        vueThis.$router.go(-1);
+                        self.$store.commit('auth_success',{"accessToken":res.data.accessToken});
+                        self.$router.go(-1);
                         self.$message({
                             // dangerouslyUseHTMLString: true,
                             showClose: true,
                             message: 'register success！',
                             type: 'success'
                         });
-                        vueThis.reload();
+                        self.reload();
                     }).catch(err => {
-                        vueThis.registerTip = {
+                        self.registerTip = {
                             showErr: true,
                             msg: '服务器繁忙，请稍后重试！'
                         };

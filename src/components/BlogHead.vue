@@ -29,6 +29,7 @@
     import {getMemberInfo} from '../api/api'
     export default {
         name: "BlogHead",
+        inject: ['reload'],
         data(){
             return{
                 memberInfo:{
@@ -44,7 +45,8 @@
             exit(){
                 this.memberInfo=null;
                 this.$store.commit("auth_logout",{});
-                this.$router.go(0);
+                this.$message.success("logout success!");
+                this.reload();
             },
             _getMemberInfo(){
                 let vueThis = this;
