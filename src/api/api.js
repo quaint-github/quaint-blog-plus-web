@@ -103,7 +103,11 @@ export const articleAddComment = (params) => {
     return axiosInstance({
         url: webPrefix + "/article/comment/add",
         method: "post",
-        data: params
+        data: params,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'accessToken': params.accessToken
+        }
     })
 };
 // 用户评论

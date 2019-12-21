@@ -102,11 +102,12 @@
 </template>
 
 <script>
-    import RightColumnNav from '../components/RightColumnNav'
-    import RightSearch from '../components/RightSearch'
+    import RightColumnNav from './RightColumnNav'
+    import RightSearch from './RightSearch'
     import {registerMember} from '../api/api'
     export default {
         name: "Register",
+        inject:['reload'],
         components: {
             RightColumnNav,
             RightSearch
@@ -155,8 +156,9 @@
                     let vueThis = this;
                     registerMember(param).then(res =>{
                         window.console.log(res);
-                        vueThis.$store.commit('auth_success',{"token":"token","memberInfo":res.data});
-                        vueThis.$router.push('/');
+                        vueThis.$store.commit('auth_success',{"accessToken":res.data.accessToken});
+                        vueThis.$router.go(-1);
+                        vueThis.reload();
                     }).catch(err => {
                         vueThis.registerTip = {
                             showErr: true,
@@ -171,7 +173,7 @@
                 this.$router.push('/about')
             },
             toLogin(){
-                this.$router.push('/login')
+                this.$emit('to-register',true)
             },
             // 校验用户名非空
             usernameFocus(){

@@ -190,7 +190,8 @@
                         "parentId": this.reCommId,
                         // 回复的用户id
                         "reId": this.aitMemberId,
-                        "commentContent":this.memberReSay
+                        "commentContent":this.memberReSay,
+                        'accessToken':this.$store.state.accessToken
                     };
                     articleAddComment(param).then(res =>{
                         if (res.data){
@@ -216,7 +217,8 @@
                         "parentId": null,
                         // 回复的用户id
                         "reId": null,
-                        "commentContent":this.memberSay
+                        "commentContent":this.memberSay,
+                        'accessToken':this.$store.state.accessToken
                     };
                     articleAddComment(param).then(res =>{
                         if (res.data){

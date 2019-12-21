@@ -73,8 +73,8 @@
 </template>
 
 <script>
-    import RightColumnNav from '../components/RightColumnNav'
-    import RightSearch from '../components/RightSearch'
+    import RightColumnNav from './RightColumnNav'
+    import RightSearch from './RightSearch'
     import {checkLogin} from '../api/api'
     export default {
         name: "Login",
@@ -135,7 +135,7 @@
                 this.$router.push('/about')
             },
             toRegister(){
-                this.$router.push('/register')
+                this.$emit('to-register',false)
             }
 
         },

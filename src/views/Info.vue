@@ -98,7 +98,7 @@
                 let vueThis = this;
                 // 获取文章信息
                 getArticleInfo(this.$route.query).then( res => {
-                    // window.console.log(JSON.stringify(res.data.labels));
+                    // window.console.log(JSON.stringify(res.data));
                     if(res.data){
                         vueThis.articleInfo = res.data;
                     }
@@ -121,7 +121,7 @@
 
                 // 获取文章信息
                 getArticleInfo({id:id}).then(res => {
-                    // window.console.log(JSON.stringify(response.data));
+                    // window.console.log(JSON.stringify(res.data));
                     if(res.data){
                         vueThis.articleInfo = res.data;
                     }
